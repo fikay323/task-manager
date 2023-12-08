@@ -10,6 +10,7 @@ import { UpcomingComponent } from './pages/main-page/upcoming/upcoming.component
 import { TodayComponent } from './pages/main-page/today/today.component';
 import { StickyWallComponent } from './pages/main-page/sticky-wall/sticky-wall.component';
 import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.component';
+import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'sticky-wall', component: StickyWallComponent}, 
     {path: 'personal', component: PersonalComponent}, 
     {path: 'work', component: WorkTasksComponent}, 
+    {path: 'new', component: TasksEditComponent}, 
   ]},
   {path: 'auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
