@@ -1,7 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { PagesComponent } from './pages/pages.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { TasksStartComponent } from './pages/main-page/tasks-start/tasks-start.component';
+import { PersonalComponent } from './pages/main-page/personal/personal.component';
+import { UpcomingComponent } from './pages/main-page/upcoming/upcoming.component';
+import { TodayComponent } from './pages/main-page/today/today.component';
+import { StickyWallComponent } from './pages/main-page/sticky-wall/sticky-wall.component';
+import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.component';
+
+const routes: Routes = [
+  {path: '', redirectTo: '/tasks', pathMatch: 'full'},
+  {path: 'tasks', component: PagesComponent, children: [
+    {path: '', component: TasksStartComponent},
+    {path: 'upcoming', component: UpcomingComponent}, 
+    {path: 'today', component: TodayComponent}, 
+    {path: 'sticky-wall', component: StickyWallComponent}, 
+    {path: 'personal', component: PersonalComponent}, 
+    {path: 'work', component: WorkTasksComponent}, 
+  ]},
+  {path: 'auth/login', component: LoginComponent},
+  {path: 'auth/register', component: RegisterComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

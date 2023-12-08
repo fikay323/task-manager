@@ -14,6 +14,9 @@ import { PersonalComponent } from './pages/main-page/personal/personal.component
 import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.component';
 import { TasksStartComponent } from './pages/main-page/tasks-start/tasks-start.component';
 import { PagesComponent } from './pages/pages.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { PagesComponent } from './pages/pages.component';
     StickyWallComponent,
     PersonalComponent,
     WorkTasksComponent,
-    TasksStartComponent
+    TasksStartComponent,
+    LoginComponent,
+    RegisterComponent,
+    TasksEditComponent
   ],
   imports: [
     BrowserModule,
