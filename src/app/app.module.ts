@@ -13,11 +13,13 @@ import { StickyWallComponent } from './pages/main-page/sticky-wall/sticky-wall.c
 import { PersonalComponent } from './pages/main-page/personal/personal.component';
 import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.component';
 import { TasksStartComponent } from './pages/main-page/tasks-start/tasks-start.component';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    PagesComponent,
     TaskListComponent,
     ListListsComponent,
     MainPageComponent,
