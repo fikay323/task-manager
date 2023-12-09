@@ -18,9 +18,10 @@ import { PagesComponent } from './pages/pages.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
-import { DateFilterPipe } from './pages/providers/date-filter.pipe';
+import { DateFilterPipe } from './providers/date-filter.pipe';
 import { FormsModule } from '@angular/forms';
-import { StringFilterPipe } from './pages/providers/string-filter.pipe';
+import { StringFilterPipe } from './providers/string-filter.pipe';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { StringFilterPipe } from './pages/providers/string-filter.pipe';
     LoginComponent,
     RegisterComponent,
     TasksEditComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

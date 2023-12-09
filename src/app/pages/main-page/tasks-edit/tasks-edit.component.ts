@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { TasksService } from '../../providers/Tasks.service';
+import { TasksService } from '../../../providers/Tasks.service';
 import { Task } from 'src/app/shared/task.model';
 import { Subscription } from 'rxjs';
 

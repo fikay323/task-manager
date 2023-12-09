@@ -12,7 +12,6 @@ export class PagesComponent{
     constructor(private renderer: Renderer2) {}
 
     toggleSideBar() {
-        const sideBar = this.sideBar.nativeElement
         if(this.sideBar.nativeElement.clientWidth === 0){
             const classesToAdd = ['p-3', 'w-[200px]', 'translate-x-0'];
             const nativeElement = this.sideBar.nativeElement;

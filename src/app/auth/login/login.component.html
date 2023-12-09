@@ -1,11 +1,12 @@
-<div class="login-container">
-    <form>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username">
+<div class="login-container border shadow-2xl rounded-lg">
+    <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+        <label for="username">Email</label>
+        <input type="text" class="rounded-md" id="username" name="email" email ngModel required>
         
         <label for="password">Password</label>
-        <input type="password" id="password" name="password">
+        <input type="password" class="rounded-md" id="password" name="password" ngModel required minlength="6">
         
-        <button type="submit">Login</button>
+        <button [disabled]="!loginForm.valid" class="rounded-md disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Login</button>
+        <p class="text-zinc-600 text-sm font-medium mt-3 text-center">Don't have an account? <a routerLink="/auth/register" class="hover:underline hover:font-semibold cursor-pointer">Sign Up</a></p>
     </form>
 </div>

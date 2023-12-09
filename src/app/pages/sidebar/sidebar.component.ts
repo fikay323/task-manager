@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TasksService } from '../providers/Tasks.service';
+import { TasksService } from '../../providers/Tasks.service';
 
 @Component({
   selector: 'app-sidebar',

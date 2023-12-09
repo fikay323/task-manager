@@ -11,6 +11,7 @@ import { TodayComponent } from './pages/main-page/today/today.component';
 import { StickyWallComponent } from './pages/main-page/sticky-wall/sticky-wall.component';
 import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.component';
 import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
@@ -24,10 +25,9 @@ const routes: Routes = [
     {path: 'new', component: TasksEditComponent},
     {path: ':name/:id', outlet: 'taskDetail', component: TasksEditComponent},
   ]},
-  {path: 'auth', children: [
+  {path: 'auth', component: AuthComponent, children: [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: '**', redirectTo: 'login'}
   ]},
 ];
 
