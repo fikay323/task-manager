@@ -1,7 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";
-import { Task } from "../shared/task.model";
-import { TasksService } from "./providers/Tasks.service";
-import { tap } from "rxjs";
+import { Component, Renderer2, ViewChild } from "@angular/core";
 
 @Component({
     selector: 'app-pages',
@@ -12,18 +9,7 @@ export class PagesComponent{
     @ViewChild('sidebar') sideBar: any
     taskDetailClosed: boolean = true
 
-    constructor(private renderer: Renderer2, private taskService: TasksService) {}
-
-    ngOnInit() {
-      this.taskService.taskSelected.pipe(tap(task => {
-        console.log(task)
-        if(task) {
-          this.taskDetailClosed = false
-        } else {
-          this.taskDetailClosed = true
-        }
-      }))
-    }
+    constructor(private renderer: Renderer2) {}
 
     toggleSideBar() {
         const sideBar = this.sideBar.nativeElement
@@ -38,7 +24,7 @@ export class PagesComponent{
               this.renderer.removeClass(nativeElement, className);
             });
         } else {
-            const classesToRemove = ['p-3', 'w-[200px]', 'translate-x-0', 'md:w-[200px]', 'md:translate-x-0', 'md:p-3'];
+            const classesToRemove = ['p-3', 'w-[200px]', 'translate-x-0', 'sm:w-[200px]', 'sm:translate-x-0', 'sm:p-3'];
             const nativeElement = this.sideBar.nativeElement;
             classesToRemove.forEach(className => {
               this.renderer.removeClass(nativeElement, className);

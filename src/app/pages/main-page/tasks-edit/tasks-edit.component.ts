@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Params, Route, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TasksService } from '../../providers/Tasks.service';
 import { Task } from 'src/app/shared/task.model';
 import { Subscription } from 'rxjs';
@@ -12,8 +12,8 @@ import { Subscription } from 'rxjs';
 export class TasksEditComponent implements OnInit {
   @ViewChild('taskForm') taskform: any
   id: number
-  name: string
-  task: Task | undefined | null
+  editMode: boolean = false
+  task: Task | undefined
   taskSubscription: Subscription
 
   constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService) {}
@@ -21,7 +21,7 @@ export class TasksEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params)=> {
       this.id = +params['id']
-      this.name = params['name']
+      this.editMode = params['name'] === 'edit' ? true : false
     })
     this.taskSubscription = this.taskService.taskSelected.subscribe(task => {
       if(task) {
@@ -34,7 +34,6 @@ export class TasksEditComponent implements OnInit {
           list: task?.taskList,
           date: formattedDate,
         })
-        console.log(this.taskform.value)
       }
     })
   }
@@ -47,7 +46,15 @@ export class TasksEditComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.taskform.value.date)
+    console.log(this.taskform.touched)
+    const formValue = this.taskform.value
+    if(this.editMode){
+      const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.id)
+      this.taskService.editTask(task)
+    } else {
+      const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.taskService.getRandomNumber())
+      this.taskService.addTask(task)
+    }
   }
 
   closeTask() {
@@ -55,4 +62,9 @@ export class TasksEditComponent implements OnInit {
     this.router.navigate(['tasks', { outlets: { taskDetail: null } }]);
   }
 
+  deleteTask() {
+    if(!this.editMode) return
+    this.taskService.deleteTask(this.id)
+    this.closeTask()
+  }
 }

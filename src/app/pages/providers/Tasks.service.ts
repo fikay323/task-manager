@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { Task } from "src/app/shared/task.model";
 
 @Injectable({providedIn: 'root'})
@@ -27,5 +27,26 @@ export class TasksService{
         task = this.Tasks.find((task) => task.taskId === id)
         return task
     }
-    
+    addTask(task: Task) {
+        this.Tasks.push(task)
+        this.taskChanged.next(this.Tasks.slice())
+    }
+    deleteTask(id: number) {
+        let task = this.Tasks.find((task) => task.taskId === id)
+        for(let i=0; i<this.Tasks.length; i++) {
+            if(this.Tasks[i].taskId === task?.taskId) {
+                this.Tasks.splice(i, 1)
+                this.taskChanged.next(this.Tasks.slice())
+            }
+        }
+    }
+    editTask(task: Task) {
+        for(let i=0; i<this.Tasks.length; i++) {
+            if(this.Tasks[i].taskId === task.taskId) {
+                this.Tasks[i] = task
+                this.taskChanged.next(this.Tasks.slice())
+                break
+            }
+        }
+    } 
 }

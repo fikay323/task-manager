@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class WorkTasksComponent {
   tasks: Task[] = []
-  track: any
   constructor(private taskService: TasksService, private router: Router) {}
 
   ngOnInit() {
@@ -23,6 +22,6 @@ export class WorkTasksComponent {
   openTask(id: number) {
     const task = this.tasks.find((task) => task.taskId === id)
     this.taskService.taskSelected.next(task)
-    this.router.navigate(['tasks', {outlets: {taskDetail: ['today', id]}}])
+    this.router.navigate(['tasks', {outlets: {taskDetail: ['edit', id]}}])
   }
 }
