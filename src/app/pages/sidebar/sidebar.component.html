@@ -1,6 +1,9 @@
-
-<app-task-list></app-task-list>
+<button (click)="createNewTask()" type="button" class="border border-zinc-400 rounded-md text-sm flex items-center justify-center gap-4 text-zinc-600 font-medium py-1 mt-2 mb-3 hover:text-zinc-900 hover:border-zinc-900">
+    <span class="material-icons">add</span>
+    <a>Add New Task</a>
+</button>
+<app-task-list class=""></app-task-list>
 <app-list-lists></app-list-lists>
-<p class="p-1 ps-2 mt-auto text-sm font-semibold flex items-center cursor-pointer">
+<p class="p-1 ps-2 mt-auto text-sm font-semibold flex items-center cursor-pointer text-zinc-900 gap-6">
     <span class="material-icons">logout</span>Sign out
 </p>
