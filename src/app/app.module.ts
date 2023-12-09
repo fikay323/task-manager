@@ -18,6 +18,8 @@ import { PagesComponent } from './pages/pages.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
+import { DateFilterPipe } from './pages/providers/date-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.comp
     TasksStartComponent,
     LoginComponent,
     RegisterComponent,
-    TasksEditComponent
+    TasksEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    DateFilterPipe
   ],
   providers: [],
   bootstrap: [AppComponent]

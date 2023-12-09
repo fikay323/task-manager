@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Task } from 'src/app/shared/task.model';
+import { TasksService } from '../../providers/Tasks.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-today',
@@ -6,5 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./today.component.css']
 })
 export class TodayComponent {
+  tasks: Task[] = []
+  track: any
+  constructor(private taskService: TasksService, private router: Router) {}
 
+  ngOnInit() {
+    this.tasks = this.taskService.getTasks()
+  }
+
+  openTask(i: any) {
+    const id = this.tasks[i].taskId
+    this.router.navigate(['tasks', { outlets: { taskDetail: ['today', id, 'edit'] } }])
+    // this.router.navigate(['', { outlets: { taskDetail: ['today', 6,] } }])
+  }
 }
