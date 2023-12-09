@@ -24,8 +24,5 @@ export class TodayComponent {
     const task = this.tasks.find((task) => task.taskId === id)
     this.taskService.taskSelected.next(task)
     this.router.navigate(['tasks', {outlets: {taskDetail: ['today', id]}}])
-    // this.router.navigate(['tasks', 'today', id])
-    // this.router.navigate(['tasks', { outlets: { taskDetail: ['today', id, 'edit'] } }])
-    // this.router.navigate(['', { outlets: { taskDetail: ['today', 6,] } }])
   }
 }
