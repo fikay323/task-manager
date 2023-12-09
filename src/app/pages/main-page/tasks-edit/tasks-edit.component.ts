@@ -48,7 +48,6 @@ export class TasksEditComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.taskform.touched)
     const formValue = this.taskform.value
     if(this.editMode){
       const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.id)
@@ -56,6 +55,7 @@ export class TasksEditComponent implements OnInit {
     } else {
       const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.taskService.getRandomNumber())
       this.taskService.addTask(task)
+      this.router.navigate(['tasks', formValue.list])
     }
   }
 

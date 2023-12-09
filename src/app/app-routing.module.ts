@@ -24,8 +24,11 @@ const routes: Routes = [
     {path: 'new', component: TasksEditComponent},
     {path: ':name/:id', outlet: 'taskDetail', component: TasksEditComponent},
   ]},
-  {path: 'auth/login', component: LoginComponent},
-  {path: 'auth/register', component: RegisterComponent},
+  {path: 'auth', children: [
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: '**', redirectTo: 'login'}
+  ]},
 ];
 
 @NgModule({
