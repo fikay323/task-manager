@@ -22,7 +22,7 @@ const routes: Routes = [
     {path: 'personal', component: PersonalComponent}, 
     {path: 'work', component: WorkTasksComponent}, 
     {path: 'new', component: TasksEditComponent},
-    {path: ':name/:id/edit', component: TasksEditComponent, outlet: 'taskDetail'},
+    {path: ':name/:id', outlet: 'taskDetail', component: TasksEditComponent},
   ]},
   {path: 'auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},

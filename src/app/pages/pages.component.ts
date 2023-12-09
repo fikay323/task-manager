@@ -1,4 +1,6 @@
 import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";
+import { Task } from "../shared/task.model";
+import { TasksService } from "./providers/Tasks.service";
 
 @Component({
     selector: 'app-pages',
@@ -6,10 +8,16 @@ import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";
     styleUrls: ['./pages.component.css']
 })
 export class PagesComponent{
-    sidebarCollapsed = false
     @ViewChild('sidebar') sideBar: any
+    openTask: any
 
-    constructor(private renderer: Renderer2) {}
+    constructor(private renderer: Renderer2, private taskService: TasksService) {}
+
+    ngOnInit() {
+      this.taskService.taskSelected.subscribe(task => {
+        this.openTask = task
+      })
+    }
 
     toggleSideBar() {
         const sideBar = this.sideBar.nativeElement

@@ -15,11 +15,17 @@ export class TodayComponent {
 
   ngOnInit() {
     this.tasks = this.taskService.getTasks()
+    this.taskService.taskChanged.subscribe(tasks => {
+      this.tasks = tasks
+    })
   }
 
-  openTask(i: any) {
-    const id = this.tasks[i].taskId
-    this.router.navigate(['tasks', { outlets: { taskDetail: ['today', id, 'edit'] } }])
+  openTask(id: number) {
+    const task = this.tasks.find((task) => task.taskId === id)
+    this.taskService.taskSelected.next(task)
+    this.router.navigate(['tasks', {outlets: {taskDetail: ['today', id]}}])
+    // this.router.navigate(['tasks', 'today', id])
+    // this.router.navigate(['tasks', { outlets: { taskDetail: ['today', id, 'edit'] } }])
     // this.router.navigate(['', { outlets: { taskDetail: ['today', 6,] } }])
   }
 }

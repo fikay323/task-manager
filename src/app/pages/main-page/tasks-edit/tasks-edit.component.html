@@ -1,18 +1,26 @@
-<div class="form">
-    <form>
-        <div class="">
+<div class="p-4 w-full h-full flex">
+    <form class="w-full h-full flex flex-col" (ngSubmit)="submitForm()" #taskForm="ngForm">
+        <div class="flex w-full items-center text-2xl font-medium">
             <h3>Task: </h3>
-            <span class="material-icons">close</span>
+            <span (click)="closeTask()" class="material-icons ms-auto text-3xl cursor-pointer">close</span>
         </div>
-        <div class="">
-            <input placeholder="Title of your task" type="text" id="name">
-            <textarea name="desc" id="desc" placeholder="Description" rows="10"></textarea>
-            <div class="">
-                <label for="select">List</label>
-                <select name="list" id="select">
+        <div class="flex flex-col mt-6">
+            <input class="p-3 border-2 border-gray-500 rounded-md bg-transparent" placeholder="Title of your task" type="text" id="name" name="taskName" ngModel required>
+            <textarea class="mt-4 p-3 border-2 border-gray-500 rounded-md bg-transparent" name="description" ngModel required id="desc" placeholder="Description" rows="6"></textarea>
+            <div class="flex mt-4 items-center">
+                <label for="select" class="font-medium text-base">List</label>
+                <select class="ms-3 p-1 border border-gray-300 bg-transparent rounded-md" name="list" id="select" ngModel required>
                     <option value="personal">Personal</option>
                     <option value="work">Work</option>
                 </select>
+            </div>
+            <div class="flex mt-4 items-center">
+                <label for="select" class="font-medium text-base">Due Date</label>
+                <input type="date" class="ms-3 p-1 border border-gray-300 bg-transparent rounded-md" name="date" id="date" ngModel required placeholder="date">
+            </div>
+            <div class="mt-10 flex justify-center gap-3">
+                <button [disabled]="!taskForm.valid" class="p-2 text-base font-medium border border-gray-400 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Save Changes</button>
+                <button class="p-2 text-base font-medium border border-gray-400 rounded-lg bg-yellow-500" type="button">Delete Task</button>
             </div>
         </div>
     </form>

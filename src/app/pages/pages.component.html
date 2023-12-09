@@ -7,4 +7,7 @@
         <span (click)="toggleSideBar()" class="material-icons text-3xl cursor-pointer">menu</span>
         <app-main-page class="flex flex-row w-full"></app-main-page>
     </section>
+    <div *ngIf="openTask" class="w-1/3 bg-gray-200 h-full rounded-2xl">
+        <router-outlet name="taskDetail"></router-outlet>
+    </div>
 </main>
