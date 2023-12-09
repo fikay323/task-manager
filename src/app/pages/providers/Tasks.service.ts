@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { Task } from "src/app/shared/task.model";
 
@@ -6,6 +7,8 @@ import { Task } from "src/app/shared/task.model";
 export class TasksService{
     taskChanged = new Subject<Task[]>()
     taskSelected = new Subject<Task| undefined | null>()
+
+    constructor(private router: Router) {}
 
     Tasks: Task[] = [
         new Task('Task A', 'Description A', 'personal', new Date('2023-12-13'), 3140854),
@@ -48,5 +51,9 @@ export class TasksService{
                 break
             }
         }
-    } 
+    }
+
+    closeTaskDetails() {
+        this.router.navigate(['tasks', { outlets: { taskDetail: null } }]);
+    }
 }

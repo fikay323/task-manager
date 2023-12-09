@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { TasksService } from '../../providers/Tasks.service';
 import { Task } from 'src/app/shared/task.model';
 import { Subscription } from 'rxjs';
@@ -16,7 +18,7 @@ export class TasksEditComponent implements OnInit {
   task: Task | undefined
   taskSubscription: Subscription
 
-  constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService, private location: Location) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params)=> {
@@ -58,8 +60,12 @@ export class TasksEditComponent implements OnInit {
   }
 
   closeTask() {
-    this.taskService.taskSelected.next(null)
-    this.router.navigate(['tasks', { outlets: { taskDetail: null } }]);
+    if(this.editMode){
+      this.taskService.taskSelected.next(null)
+      this.taskService.closeTaskDetails()
+    } else {
+      this.location.back()
+    }
   }
 
   deleteTask() {

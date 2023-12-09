@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TasksService } from '../providers/Tasks.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private taskService: TasksService) {}
   createNewTask() {
-    this.router.navigate(['tasks', 'new'])
+    this.taskService.closeTaskDetails()
+    setTimeout(() => {
+      this.router.navigate(['tasks', 'new'])
+    }, 50);
   }
 }
