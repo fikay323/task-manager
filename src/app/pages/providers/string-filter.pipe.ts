@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StringFilterPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
+  transform(value: string, filter: string) {
     return null;
   }
 

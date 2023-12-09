@@ -20,6 +20,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
 import { DateFilterPipe } from './pages/providers/date-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { StringFilterPipe } from './pages/providers/string-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     MatIconModule,
     FormsModule,
-    DateFilterPipe
+    DateFilterPipe,
+    StringFilterPipe,
   ],
   providers: [],
   bootstrap: [AppComponent]

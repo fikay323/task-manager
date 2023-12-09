@@ -1,1 +1,15 @@
-<p>work-tasks-component works!</p>
+<section class="p-4 pt-0">
+    <h1 class="text-4xl font-medium">Upcoming</h1>
+    <div class="tasks mt-8">
+        @if (tasks.length > 0) {
+            @for (task of tasks| dateFilter: 'upcoming'; track i; let i = $index) {
+                <p routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center" (click)="openTask(task.taskId)">
+                    <a class="text-sm font-medium">{{ task.taskName }}</a>
+                    <span class="material-icons ms-auto">chevron_right</span>
+                </p>
+            }
+        } @else {
+            <h2>You have no upcoming tasks</h2>
+        }
+    </div>
+</section>
