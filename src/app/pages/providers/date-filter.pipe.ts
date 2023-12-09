@@ -16,6 +16,19 @@ export class DateFilterPipe implements PipeTransform {
       })
       return taskArray
     }
+    if(propertyToBeFiltered === 'upcoming') {
+      let taskArray: Task[] = []
+      const date = new Date()
+      taskArray = value.filter((task) => {
+        return task.taskDueDate > date
+      })
+      const arr = taskArray.sort((a, b) => {
+        const date1 = a.taskDueDate
+        const date2 = b.taskDueDate
+        return date1.getTime() - date2.getTime()
+      })
+      return taskArray
+    }
     return value;
   }
 

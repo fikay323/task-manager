@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { Task } from "src/app/shared/task.model";
 
 @Injectable({providedIn: 'root'})
@@ -12,7 +12,7 @@ export class TasksService{
         new Task('Task B', 'Description B', 'work', new Date(), 8887486),
         new Task('Task C', 'Description C', 'personal', new Date('2023-12-4'), 4133539),
         new Task('Task D', 'Description D', 'work', new Date(), 1448232),
-        new Task('Task E', 'Description E', 'personal', new Date('2023-12-10'), 1788235),
+        new Task('Task E', 'Description E', 'work', new Date('2023-12-10'), 1788235),
         new Task('Task F', 'Description F', 'personal', new Date('2023-12-9'), 91406734),
     ]
     getRandomNumber() {

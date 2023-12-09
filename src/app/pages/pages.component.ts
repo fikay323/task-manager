@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";
 import { Task } from "../shared/task.model";
 import { TasksService } from "./providers/Tasks.service";
+import { tap } from "rxjs";
 
 @Component({
     selector: 'app-pages',
@@ -9,14 +10,19 @@ import { TasksService } from "./providers/Tasks.service";
 })
 export class PagesComponent{
     @ViewChild('sidebar') sideBar: any
-    openTask: any
+    taskDetailClosed: boolean = true
 
     constructor(private renderer: Renderer2, private taskService: TasksService) {}
 
     ngOnInit() {
-      this.taskService.taskSelected.subscribe(task => {
-        this.openTask = task
-      })
+      this.taskService.taskSelected.pipe(tap(task => {
+        console.log(task)
+        if(task) {
+          this.taskDetailClosed = false
+        } else {
+          this.taskDetailClosed = true
+        }
+      }))
     }
 
     toggleSideBar() {

@@ -1,13 +1,14 @@
 <main class="p-4 w-screen h-screen flex">
-    <aside class="bg-gray-200 rounded-2xl w-0 translate-x-[-200%] p-0 md:w-[200px] md:translate-x-0 md:p-3 duration-300 overflow-hidden whitespace-nowrap"
+    <aside class="bg-gray-200 rounded-2xl w-0 translate-x-[-200%] p-0 md:w-[200px]
+    md:translate-x-0 md:p-3 duration-300 overflow-hidden whitespace-nowrap"
     #sidebar>
         <app-sidebar class="flex flex-col h-full"></app-sidebar>
     </aside>
+    <span (click)="toggleSideBar()" class="material-icons h-fit text-3xl cursor-pointer">menu</span>
     <section class="grow">
-        <span (click)="toggleSideBar()" class="material-icons text-3xl cursor-pointer">menu</span>
-        <app-main-page class="flex flex-row w-full"></app-main-page>
+        <app-main-page class="flex flex-row grow"></app-main-page>
     </section>
-    <div *ngIf="openTask" class="w-1/3 bg-gray-200 h-full rounded-2xl">
+    <div class="m-0">
         <router-outlet name="taskDetail"></router-outlet>
     </div>
 </main>
