@@ -23,7 +23,6 @@ import { DateFilterPipe } from './providers/date-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { StringFilterPipe } from './providers/string-filter.pipe';
 import { AuthComponent } from './auth/auth.component';
-import { AuthGuard } from './providers/auth.guard';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
