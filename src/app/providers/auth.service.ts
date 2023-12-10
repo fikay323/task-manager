@@ -48,7 +48,7 @@ export class AuthService {
     this.User.next(null)
     localStorage.removeItem('userData')
     clearTimeout(this.tokenExpirationTimer)
-    this.router.navigate(['/tasks', 'login'])
+    this.router.navigate(['/auth', 'login'])
   }
 
   autoLogout(expiryTime: number) {
