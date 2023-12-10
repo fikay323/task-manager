@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,7 @@ import { DateFilterPipe } from './providers/date-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { StringFilterPipe } from './providers/string-filter.pipe';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './providers/auth.guard';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { AuthComponent } from './auth/auth.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MatIconModule,
     FormsModule,

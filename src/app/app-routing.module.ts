@@ -12,10 +12,11 @@ import { StickyWallComponent } from './pages/main-page/sticky-wall/sticky-wall.c
 import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.component';
 import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './providers/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
-  {path: 'tasks', component: PagesComponent, children: [
+  {path: 'tasks', component: PagesComponent, canActivate: [AuthGuard], children: [
     {path: '', component: TasksStartComponent},
     {path: 'upcoming', component: UpcomingComponent}, 
     {path: 'today', component: TodayComponent}, 
