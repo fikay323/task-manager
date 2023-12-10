@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { TasksService } from '../../../providers/Tasks.service';
 import { Task } from 'src/app/shared/task.model';
 import { Subscription } from 'rxjs';
+import { DataStorageService } from 'src/app/providers/data-storage.service';
 
 @Component({
   selector: 'app-tasks-edit',
@@ -18,7 +19,7 @@ export class TasksEditComponent implements OnInit {
   task: Task | undefined
   taskSubscription: Subscription
 
-  constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService, private location: Location) {}
+  constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService, private location: Location, private dataStorageService: DataStorageService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params)=> {
@@ -55,6 +56,7 @@ export class TasksEditComponent implements OnInit {
     } else {
       const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.taskService.getRandomNumber())
       this.taskService.addTask(task)
+      this.dataStorageService.addTaskToDatabase(task)
       this.router.navigate(['tasks', formValue.list])
     }
   }

@@ -19,21 +19,30 @@ export class DataStorageService{
         })
     }
     
-    addRecipeToDatabase(task) {
-        return this.http.post(`${this.link}/${this.userId}/tasks.json`, task)
+    addTaskToDatabase(task) {
+        return this.http.post(`${this.link}/${this.userId}/tasks.json`, task).subscribe(resData => {
+            console.log(resData)
+        })
     }
-    fetchRecipeFromDatabase() {
+    fetchTaskFromDatabase() {
         return this.http.get<Task[]>(`${this.link}/${this.userId}/tasks.json`)
         .pipe(map(response => {
             const taskArray: Task[] = []
-            for(let element of response) {
-                const task = new Task(element.taskName, element.taskDescription, element.taskList, element.taskDueDate, element.taskId)
-                taskArray.push(task)
-            }
+            console.log(response)
+            // if(response.length > 0) {
+            //     for(let element of response) {
+            //         const task = new Task(element.taskName, element.taskDescription, element.taskList, element.taskDueDate, element.taskId)
+            //         taskArray.push(task)
+            //     }
+            // }
             return taskArray
         }), tap(tasksArray => {
             this.taskService.setTasks(tasksArray)
         }))
+    }
+    updateTsk(){
+        const tasks = this.taskService.getTasks()
+        return this.http.put(`${this.link}/${this.userId}/tasks.json`, tasks)
     }
 
 }

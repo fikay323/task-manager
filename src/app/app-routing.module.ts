@@ -13,18 +13,37 @@ import { WorkTasksComponent } from './pages/main-page/work-tasks/work-tasks.comp
 import { TasksEditComponent } from './pages/main-page/tasks-edit/tasks-edit.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './providers/auth.guard';
+import { TasksResolverService } from './providers/tasks-resolver.service';
+
+// const routes: Routes = [
+//   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
+//   {path: 'tasks', component: PagesComponent, canActivate: [AuthGuard], children: [
+//     {path: '', component: TasksStartComponent},
+//     {path: 'upcoming', component: UpcomingComponent}, 
+//     {path: 'today', component: TodayComponent}, 
+//     {path: 'sticky-wall', component: StickyWallComponent}, 
+//     {path: 'personal', component: PersonalComponent}, 
+//     {path: 'work', component: WorkTasksComponent}, 
+//     {path: 'new', component: TasksEditComponent},
+//     {path: ':name/:id', outlet: 'taskDetail', component: TasksEditComponent},
+//   ]},
+//   {path: 'auth', component: AuthComponent, children: [
+//     {path: 'login', component: LoginComponent},
+//     {path: 'register', component: RegisterComponent},
+//   ]},
+// ];
 
 const routes: Routes = [
   {path: '', redirectTo: '/tasks', pathMatch: 'full'},
-  {path: 'tasks', component: PagesComponent, canActivate: [AuthGuard], children: [
-    {path: '', component: TasksStartComponent},
-    {path: 'upcoming', component: UpcomingComponent}, 
-    {path: 'today', component: TodayComponent}, 
-    {path: 'sticky-wall', component: StickyWallComponent}, 
-    {path: 'personal', component: PersonalComponent}, 
-    {path: 'work', component: WorkTasksComponent}, 
-    {path: 'new', component: TasksEditComponent},
-    {path: ':name/:id', outlet: 'taskDetail', component: TasksEditComponent},
+  {path: 'tasks', component: PagesComponent, canActivate: [AuthGuard], resolve: [TasksResolverService], children: [
+    {path: '', resolve: [TasksResolverService], component: TasksStartComponent},
+    {path: 'upcoming', resolve: [TasksResolverService], component: UpcomingComponent}, 
+    {path: 'today', resolve: [TasksResolverService], component: TodayComponent}, 
+    {path: 'sticky-wall', resolve: [TasksResolverService], component: StickyWallComponent}, 
+    {path: 'personal', resolve: [TasksResolverService], component: PersonalComponent}, 
+    {path: 'work', resolve: [TasksResolverService], component: WorkTasksComponent}, 
+    {path: 'new', resolve: [TasksResolverService], component: TasksEditComponent},
+    {path: ':name/:id', outlet: 'taskDetail', resolve: [TasksResolverService], component: TasksEditComponent},
   ]},
   {path: 'auth', component: AuthComponent, children: [
     {path: 'login', component: LoginComponent},
