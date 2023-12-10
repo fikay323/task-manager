@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "task-manager-c8110": {
+      "hosting": {
+        "task-manager": [
+          "task-manager-c8110"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "task-manager-c8110"
+  }
+}

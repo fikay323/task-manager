@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { User } from '../shared/user.model';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ export interface AuthResponse {
 
 export class AuthService {
   key: string = 'AIzaSyA9SAqzk_9d6uMt364o1HJ3L7rejHsnsVg'
-  User = new BehaviorSubject<User >(null)
+  User = new BehaviorSubject<User>(null)
   tokenExpirationTimer: any
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -39,7 +39,6 @@ export class AuthService {
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.key}`,
       { email: user.email, password: user.password, returnSecureToken: true }
       ).pipe(tap(response => {
-      console.log(response)
       this.handleAuthentication(response.email, response.idToken, response.refreshToken, +response.expiresIn)
     }))
   }
@@ -69,6 +68,7 @@ export class AuthService {
       if(user.token) {
         this.User.next(user)
         const expiryDate = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime()
+        console.log(user.id)
         this.autoLogout(expiryDate)
         this.router.navigate(['/tasks'])
       }
@@ -78,6 +78,7 @@ export class AuthService {
   private handleAuthentication(email: string, id: string, token: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + expiresIn*1000)
     const user = new User(email, id, token, expirationDate)
+    console.log(id)
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))
     this.autoLogout(expirationDate.getTime())
