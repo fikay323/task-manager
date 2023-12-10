@@ -22,6 +22,11 @@ export class TasksService{
         const number = Math.floor(Math.random()*10000000)
         return number
     }
+    setTasks(tasks: Task[]) {
+        this.Tasks = tasks
+        this.taskChanged.next(this.Tasks.slice())
+        console.log(this.Tasks)
+    }
     getTasks() {
         return this.Tasks
     }
