@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/providers/auth.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  
   constructor(private router: Router, private taskService: TasksService, private authService: AuthService) {}
 
   createNewTask() {
