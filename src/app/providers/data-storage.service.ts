@@ -33,16 +33,18 @@ export class DataStorageService{
         return this.http.get<Task[]>(`${this.link}/${this.userId}/tasks.json`)
         .pipe(map(response => {
             const taskArray: Task[] = []
-            if(Array.isArray(response)) {
-                for(let element of response) {
-                    const task = new Task(element.taskName, element.taskDescription, element.taskList, element.taskDueDate, element.taskId)
+            for(let element in response) {
+                if(response.hasOwnProperty(element)) {
+                    const task: Task = {
+                        ...response[element],
+                        taskDueDate: new Date(response[element].taskDueDate)
+                    }
                     taskArray.push(task)
                 }
             }
             console.log(taskArray)
             return taskArray
         }), tap(tasksArray => {
-            console.log(tasksArray)
             this.taskService.setTasks(tasksArray)
         }))
     }

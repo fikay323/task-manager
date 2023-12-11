@@ -11,8 +11,9 @@ export class DateFilterPipe implements PipeTransform {
     if(propertyToBeFiltered === 'currentDate') {
       let taskArray: Task[] = []
       taskArray = value.filter((task) => {
+        const taskDate = new Date(task.taskDueDate)
         const date = new Date()
-        return task.taskDueDate.getDate() === date.getDate() && task.taskDueDate.getMonth() === date.getMonth() && task.taskDueDate.getFullYear() === date.getFullYear()
+        return taskDate.getDate() === date.getDate() && taskDate.getMonth() === date.getMonth() && taskDate.getFullYear() === date.getFullYear()
       })
       return taskArray
     }
@@ -20,11 +21,11 @@ export class DateFilterPipe implements PipeTransform {
       let taskArray: Task[] = []
       const date = new Date()
       taskArray = value.filter((task) => {
-        return task.taskDueDate > date
+        return new Date(task.taskDueDate) > date
       })
-      const arr = taskArray.sort((a, b) => {
-        const date1 = a.taskDueDate
-        const date2 = b.taskDueDate
+      taskArray.sort((a, b) => {
+        const date1 = new Date(a.taskDueDate)
+        const date2 = new Date(b.taskDueDate)
         return date1.getTime() - date2.getTime()
       })
       return taskArray

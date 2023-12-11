@@ -1,15 +1,17 @@
 <section class="p-4 pt-0">
     <h1 class="text-4xl font-medium">Personal</h1>
     <div class="tasks mt-8">
-        @if (tasks.length > 0) {
-            @for (task of tasks| stringFilter: 'personal' ; track i; let i = $index) {
-                <p routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center" (click)="openTask(task.taskId)">
-                    <a class="text-sm font-medium">{{ task.taskName }}</a>
-                    <span class="material-icons ms-auto">chevron_right</span>
-                </p>
+        <div *ngIf="(tasks | stringFilter: 'personal') as result">
+            @if (result.length > 0) {
+                @for (task of result; track $index) {
+                    <p routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center" (click)="openTask(task.taskId)">
+                        <a class="text-sm font-medium">{{ task.taskName }}</a>
+                        <span class="material-icons ms-auto">chevron_right</span>
+                    </p>
+                }
+            } @else {
+                <h2>You have no task tagged as Personal</h2>
             }
-        } @else {
-            <h2>You have no task tagged with Personal</h2>
-        }
+        </div>
     </div>
 </section>

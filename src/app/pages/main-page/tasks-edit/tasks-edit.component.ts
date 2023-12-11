@@ -23,17 +23,19 @@ export class TasksEditComponent implements OnInit {
     this.route.params.subscribe((params: Params)=> {
       this.id = +params['id']
       this.editMode = params['name'] === 'edit' ? true : false
-      const task = this.taskService.getTask(this.id)
-      const date = task?.taskDueDate;
-      const formattedDate = `${date?.getFullYear()}-${(date?.getMonth() ?? 0) + 1}-${this.padTo2Digits(date?.getDate())}`;
-      setTimeout(() => {
-        this.taskForm.setValue({
-          taskName: task?.taskName,
-          description: task?.taskDescription,
-          list: task?.taskList,
-          date: formattedDate,
-        })
-      });
+      if(this.editMode){
+        const task = this.taskService.getTask(this.id)
+        const date = new Date(task?.taskDueDate)
+        const formattedDate = `${date?.getFullYear()}-${(date?.getMonth() ?? 0) + 1}-${this.padTo2Digits(date?.getDate())}`;
+        setTimeout(() => {
+          this.taskForm.setValue({
+            taskName: task?.taskName,
+            description: task?.taskDescription,
+            list: task?.taskList,
+            date: formattedDate,
+          })
+        });
+      }
     })
   }
 

@@ -25,7 +25,6 @@ export class TasksService{
     setTasks(tasks: Task[]) {
         this.Tasks = tasks
         this.taskChanged.next(this.Tasks.slice())
-        console.log(this.Tasks)
     }
     getTasks() {
         return this.Tasks
