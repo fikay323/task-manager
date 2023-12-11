@@ -45,6 +45,7 @@ export class TasksService{
             if(this.Tasks[i].taskId === task?.taskId) {
                 this.Tasks.splice(i, 1)
                 this.taskChanged.next(this.Tasks.slice())
+                break
             }
         }
     }

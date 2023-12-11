@@ -52,9 +52,9 @@ export class DataStorageService{
             this.taskService.setTasks(tasksArray)
         }))
     }
-    updateTask(){
-        const tasks = this.taskService.getTasks()
-        return this.http.put(`${this.link}/${this.userId}/tasks.json`, tasks)
+    updateTask(task: Task){
+        const edittedTask = new Task(task.taskName, task.taskDescription, task.taskList, task.taskDueDate, task.taskId)
+        return this.http.put(`${this.link}/${this.userId}/tasks/${task.fireId}.json`, edittedTask)
     }
     deleteTask(fireId: string){
         return this.afd.database.ref(`${this.userId}/tasks/${fireId}`).remove()

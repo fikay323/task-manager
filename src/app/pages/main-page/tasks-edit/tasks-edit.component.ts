@@ -50,6 +50,7 @@ export class TasksEditComponent implements OnInit {
     if(this.editMode){
       const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.id, this.fireId)
       this.taskService.editTask(task)
+      this.dataStorageService.updateTask(task).subscribe()
     } else {
       this.dataStorageService.addTaskToDatabase(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.taskService.getRandomNumber())
       this.router.navigate(['tasks', formValue.list])
@@ -67,6 +68,7 @@ export class TasksEditComponent implements OnInit {
 
   deleteTask() {
     if(!this.editMode) return
+    this.taskService.deleteTask(this.id)
     this.dataStorageService.deleteTask(this.fireId).then(() => {
       this.closeTask()
     })
