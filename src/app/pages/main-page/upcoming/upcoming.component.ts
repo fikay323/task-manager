@@ -21,7 +21,5 @@ export class UpcomingComponent {
   }
 
   openTask(id: number) {
-    const task = this.tasks.find((task) => task.taskId === id)
-    this.router.navigate(['tasks', {outlets: {taskDetail: ['edit', id]}}])
   }
 }

@@ -41,7 +41,6 @@ export class AuthService {
       const user = new User(userData.email, userData.id, userData._token)
       if(user.token) {
         this.User.next(user)
-        console.log(user.id)
       }
     }
   }

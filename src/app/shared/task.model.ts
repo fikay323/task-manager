@@ -4,6 +4,7 @@ export class Task{
         public taskDescription: string,
         public taskList: string,
         public taskDueDate: Date,
-        public taskId: number
+        public taskId: number,
+        public fireId?: string
     ) {}
 }

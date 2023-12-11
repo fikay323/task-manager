@@ -16,6 +16,7 @@ export class TasksEditComponent implements OnInit {
   id: number
   editMode: boolean = false
   task: Task | undefined
+  fireId: string
 
   constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService, private location: Location, private dataStorageService: DataStorageService) {}
 
@@ -26,6 +27,7 @@ export class TasksEditComponent implements OnInit {
       if(this.editMode){
         const task = this.taskService.getTask(this.id)
         const date = new Date(task?.taskDueDate)
+        this.fireId = task.fireId
         const formattedDate = `${date?.getFullYear()}-${(date?.getMonth() ?? 0) + 1}-${this.padTo2Digits(date?.getDate())}`;
         setTimeout(() => {
           this.taskForm.setValue({
@@ -46,12 +48,10 @@ export class TasksEditComponent implements OnInit {
   submitForm() {
     const formValue = this.taskForm.value
     if(this.editMode){
-      const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.id)
+      const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.id, this.fireId)
       this.taskService.editTask(task)
     } else {
-      const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.taskService.getRandomNumber())
-      this.taskService.addTask(task)
-      this.dataStorageService.addTaskToDatabase(task)
+      this.dataStorageService.addTaskToDatabase(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.taskService.getRandomNumber())
       this.router.navigate(['tasks', formValue.list])
     }
   }
@@ -67,7 +67,8 @@ export class TasksEditComponent implements OnInit {
 
   deleteTask() {
     if(!this.editMode) return
-    this.taskService.deleteTask(this.id)
-    this.closeTask()
+    this.dataStorageService.deleteTask(this.fireId).then(() => {
+      this.closeTask()
+    })
   }
 }

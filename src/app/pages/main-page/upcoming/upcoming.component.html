@@ -4,7 +4,7 @@
         <div *ngIf="(tasks | dateFilter: 'upcoming') as result">
             @if (result.length > 0) {
                 @for (task of result; track $index) {
-                    <p routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center" (click)="openTask(task.taskId)">
+                    <p [routerLink]="['/tasks', {outlets: {taskDetail: ['edit', task.taskId]}}]" routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center" (click)="openTask(task.taskId)">
                         <a class="text-sm font-medium">{{ task.taskName }}</a>
                         <span class="material-icons ms-auto">chevron_right</span>
                     </p>

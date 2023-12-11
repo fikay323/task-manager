@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { Task } from "../shared/task.model";
 import { TasksService } from "./Tasks.service";
+import { AngularFireDatabase } from "@angular/fire/compat/database";
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService{
@@ -12,7 +13,7 @@ export class DataStorageService{
     userSubscription: Subscription
     link = 'https://task-manager-c8110-default-rtdb.firebaseio.com'
 
-    constructor(private authService: AuthService, private http: HttpClient, private taskService: TasksService) {
+    constructor(private authService: AuthService, private afd: AngularFireDatabase, private http: HttpClient, private taskService: TasksService) {
         this.init()
     }
 
@@ -22,10 +23,12 @@ export class DataStorageService{
         })
     }
     
-    addTaskToDatabase(task) {
+    addTaskToDatabase(taskName, description, list, date, randomNumber) {
+        const task = new Task(taskName, description, list, date, randomNumber)
         return this.http.post(`${this.link}/${this.userId}/tasks.json`, task).subscribe(resData => {
             console.log(resData)
-            this.taskService.addTask(task)
+            const addedTask = new Task(taskName, description, list, date, randomNumber, resData['name'])
+            this.taskService.addTask(addedTask)
         })
     }
     fetchTaskFromDatabase() {
@@ -37,7 +40,8 @@ export class DataStorageService{
                 if(response.hasOwnProperty(element)) {
                     const task: Task = {
                         ...response[element],
-                        taskDueDate: new Date(response[element].taskDueDate)
+                        taskDueDate: new Date(response[element].taskDueDate),
+                        fireId: element
                     }
                     taskArray.push(task)
                 }
@@ -48,9 +52,12 @@ export class DataStorageService{
             this.taskService.setTasks(tasksArray)
         }))
     }
-    updateTsk(){
+    updateTask(){
         const tasks = this.taskService.getTasks()
         return this.http.put(`${this.link}/${this.userId}/tasks.json`, tasks)
+    }
+    deleteTask(fireId: string){
+        return this.afd.database.ref(`${this.userId}/tasks/${fireId}`).remove()
     }
 
 }
