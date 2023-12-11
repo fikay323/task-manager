@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
+import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../shared/user.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class AuthService {
   key: string = 'AIzaSyA9SAqzk_9d6uMt364o1HJ3L7rejHsnsVg'
   User = new BehaviorSubject<User>(null)
 
-  constructor(private http: HttpClient, private router: Router, private afs: AngularFireAuth) {}
+  constructor(private router: Router, private afs: AngularFireAuth) {}
   
   signUp(user: any) {
     return this.afs.createUserWithEmailAndPassword(user.email, user.password)

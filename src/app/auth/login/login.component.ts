@@ -20,5 +20,8 @@ export class LoginComponent {
     this.authService.login(user).then(response => {
       this.authService.handleAuthentication(response.user)
     })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }
