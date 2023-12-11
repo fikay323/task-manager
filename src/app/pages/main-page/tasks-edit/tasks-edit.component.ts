@@ -4,7 +4,6 @@ import { Location } from '@angular/common';
 
 import { TasksService } from '../../../providers/Tasks.service';
 import { Task } from 'src/app/shared/task.model';
-import { Subscription } from 'rxjs';
 import { DataStorageService } from 'src/app/providers/data-storage.service';
 
 @Component({
@@ -13,11 +12,10 @@ import { DataStorageService } from 'src/app/providers/data-storage.service';
   styleUrls: ['./tasks-edit.component.css']
 })
 export class TasksEditComponent implements OnInit {
-  @ViewChild('taskForm') taskform: any
+  @ViewChild('taskForm') taskForm: any
   id: number
   editMode: boolean = false
   task: Task | undefined
-  taskSubscription: Subscription
 
   constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService, private location: Location, private dataStorageService: DataStorageService) {}
 
@@ -25,23 +23,18 @@ export class TasksEditComponent implements OnInit {
     this.route.params.subscribe((params: Params)=> {
       this.id = +params['id']
       this.editMode = params['name'] === 'edit' ? true : false
-    })
-    this.taskSubscription = this.taskService.taskSelected.subscribe(task => {
-      if(task) {
-        this.task = task
-        const date = task?.taskDueDate;
-        const formattedDate = `${date?.getFullYear()}-${(date?.getMonth() ?? 0) + 1}-${this.padTo2Digits(date?.getDate())}`;
-        this.taskform.setValue({
+      const task = this.taskService.getTask(this.id)
+      const date = task?.taskDueDate;
+      const formattedDate = `${date?.getFullYear()}-${(date?.getMonth() ?? 0) + 1}-${this.padTo2Digits(date?.getDate())}`;
+      setTimeout(() => {
+        this.taskForm.setValue({
           taskName: task?.taskName,
           description: task?.taskDescription,
           list: task?.taskList,
           date: formattedDate,
         })
-      }
+      });
     })
-  }
-  ngOnDestroy() {
-    this.taskSubscription.unsubscribe()
   }
 
   padTo2Digits(num: any) {
@@ -49,7 +42,7 @@ export class TasksEditComponent implements OnInit {
   }
 
   submitForm() {
-    const formValue = this.taskform.value
+    const formValue = this.taskForm.value
     if(this.editMode){
       const task = new Task(formValue.taskName, formValue.description, formValue.list, new Date(formValue.date), this.id)
       this.taskService.editTask(task)

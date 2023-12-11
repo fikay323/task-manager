@@ -70,7 +70,6 @@ export class AuthService {
         const expiryDate = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime()
         console.log(user.id)
         this.autoLogout(expiryDate)
-        this.router.navigate(['/tasks'])
       }
     }
   }
