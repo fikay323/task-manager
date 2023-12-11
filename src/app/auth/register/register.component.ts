@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/providers/auth.service';
 
@@ -17,6 +17,8 @@ export class RegisterComponent {
       email: registerForm.value.email,
       password: registerForm.value.password
     }
-    this.authService.signUp(user).subscribe()
+    this.authService.signUp(user).then(response => {
+      this.authService.handleAuthentication(response.user)
+    })
   }
 }

@@ -2,12 +2,11 @@ export class User {
     constructor(
         public email: string,
         public id: string,
-        private _token: string,
-        private _tokenExpirationDate: Date,
+        private _token: string
     ) {}
 
     get token() {
-        if(!this._token || new Date() > this._tokenExpirationDate) {
+        if(!this._token) {
             return null
         }
         return this._token

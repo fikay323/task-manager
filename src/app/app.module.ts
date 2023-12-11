@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,9 +28,7 @@ import { DateFilterPipe } from './providers/date-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { StringFilterPipe } from './providers/string-filter.pipe';
 import { AuthComponent } from './auth/auth.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -54,9 +57,11 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
     FormsModule,
     DateFilterPipe,
     StringFilterPipe,
-    provideFirebaseApp(() => initializeApp({"projectId":"task-manager-c8110","appId":"1:19729874909:web:ff28b2fa6187e83d428034","databaseURL":"https://task-manager-c8110-default-rtdb.firebaseio.com","storageBucket":"task-manager-c8110.appspot.com","apiKey":"AIzaSyA9SAqzk_9d6uMt364o1HJ3L7rejHsnsVg","authDomain":"task-manager-c8110.firebaseapp.com","messagingSenderId":"19729874909","measurementId":"G-VFS2VCCLK3"})),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideAuth(() => getAuth()),
+    // provideDatabase(() => getDatabase()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

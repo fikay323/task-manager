@@ -17,6 +17,8 @@ export class LoginComponent {
       email: loginForm.value.email,
       password: loginForm.value.password
     }
-    this.authService.login(user).subscribe()
+    this.authService.login(user).then(response => {
+      this.authService.handleAuthentication(response.user)
+    })
   }
 }
