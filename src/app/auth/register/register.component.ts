@@ -8,16 +8,19 @@ import { AuthService } from 'src/app/providers/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  isFetching = false
 
   constructor(private authService: AuthService) {}
 
   register(registerForm: NgForm) {
     if(!registerForm.valid) return
+    this.isFetching = true
     const user = {
       email: registerForm.value.email,
       password: registerForm.value.password
     }
     this.authService.signUp(user).then(response => {
+      this.isFetching = false
       this.authService.handleAuthentication(response.user)
     })
   }

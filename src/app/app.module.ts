@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { StringFilterPipe } from './providers/string-filter.pipe';
 import { AuthComponent } from './auth/auth.component';
 import { environment } from 'src/environments/environment';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { environment } from 'src/environments/environment';
     RegisterComponent,
     TasksEditComponent,
     AuthComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

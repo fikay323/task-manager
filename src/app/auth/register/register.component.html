@@ -1,4 +1,4 @@
-<div class="register-container border shadow-2xl rounded-lg">
+<div *ngIf="!isFetching" class="register-container border shadow-2xl rounded-lg">
     <form (ngSubmit)="register(registerForm)" #registerForm="ngForm">
         <label for="username">Email</label>
         <input type="text" class="rounded-md" id="username" name="email" email ngModel required>
@@ -9,4 +9,7 @@
         <button [disabled]="!registerForm.valid" class="rounded-md disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Register</button>
         <p class="text-zinc-600 text-sm font-medium mt-3 text-center">Already have an account? <a routerLink="/auth/login" class="hover:underline hover:font-semibold cursor-pointer">Sign In</a></p>
     </form>
+</div>
+<div *ngIf="isFetching" class="text-center">
+    <app-loading-spinner></app-loading-spinner>
 </div>
