@@ -1,0 +1,16 @@
+aside {
+    height: 100%;
+    transform: translateX(0%);
+}
+.collapse {
+    width: 0px;
+    transform: translateX(-100%);
+    padding: 0 !important;
+}
+
+@media (max-width: 500px) {
+    aside {
+        width: 80%;
+        position: absolute;
+    }
+}

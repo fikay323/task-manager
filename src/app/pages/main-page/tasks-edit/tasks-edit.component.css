@@ -1,0 +1,5 @@
+@media (max-width: 500px) {
+    div[form] {
+        width: 100vw;
+    }
+}

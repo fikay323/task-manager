@@ -1,17 +1,16 @@
-<main class="p-4 w-screen h-screen flex">
-    <aside class="bg-gray-200 rounded-2xl w-0 translate-x-[-200%] p-0 sm:w-[200px]
-    sm:translate-x-0 sm:p-3 duration-300 overflow-hidden whitespace-nowrap"
-    #sidebar>
+<main class="p w-screen h-screen flex">
+    <aside class="bg-gray-200 w-[200px] rounded-2xl translate-x-[-200%] p-3 duration-300
+    sm:translate-x-0 overflow-hidden whitespace-nowrap"
+    #sidebar [class.collapse]="toggledSidebar">
+        <span *ngIf="!toggledSidebar" [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons h-fit text-3xl cursor-pointer ml-[85%]">close</span>
         <app-sidebar class="flex flex-col h-full"></app-sidebar>
     </aside>
-    <span (click)="toggleSideBar()" class="material-icons h-fit text-3xl cursor-pointer">menu</span>
-    <section class="grow">
-        <app-main-page class="flex flex-row grow"></app-main-page>
+    
+    <section class="grow flex flex-col">
+        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons mt-1 ml-2 h-fit text-3xl cursor-pointer">menu</span>
+        <app-main-page class="grow"></app-main-page>
     </section>
-    <div class="">
+    <div>
         <router-outlet name="taskDetail"></router-outlet>
-    </div>
-    <div class="">
-        <router-outlet name="hubhubdu"></router-outlet>
     </div>
 </main>
