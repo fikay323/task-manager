@@ -1,4 +1,5 @@
 import { Component, HostListener, Renderer2, ViewChild } from "@angular/core";
+import { ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
 
 @Component({
     selector: 'app-pages',
@@ -6,8 +7,16 @@ import { Component, HostListener, Renderer2, ViewChild } from "@angular/core";
     styleUrls: ['./pages.component.css']
 })
 export class PagesComponent{
-  toggledSidebar = true
+  toggledSidebar = false
   screenWidth: number
+  userPresent: boolean
+
+  constructor(private route: ActivatedRoute) {}
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.userPresent = params['name'] === 'edit' ? true : false
+    })
+  }
 
   toggleSidebar() {
     this.toggledSidebar = !this.toggledSidebar
@@ -22,6 +31,8 @@ export class PagesComponent{
 
   adjustBasedOnWidth(): void {
     if (this.screenWidth < 500) {
+      this.toggledSidebar = true
+    } else if(this.screenWidth < 680 && this.screenWidth > 500 && this.userPresent === false) {
       this.toggledSidebar = true
     } else {
       this.toggledSidebar = false

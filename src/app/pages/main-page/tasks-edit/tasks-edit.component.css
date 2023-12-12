@@ -6,3 +6,7 @@
         width: 100vw;
     }
 }
+.notEditMode {
+    width: 60%;
+    margin-left: 20px;
+}
