@@ -1,11 +1,11 @@
 section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 div[overlay] {
     z-index: 9;
 }
-div[overlay] span, button, input, textarea {
+div[overlay] span, div[overlay] div, input, textarea {
     z-index: 10000;
 }
 div[overlay] .material-icons {

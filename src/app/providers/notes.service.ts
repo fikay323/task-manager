@@ -45,16 +45,16 @@ export class NotesService{
         this.noteChanged.next(this.Notes.slice())
         console.log(this.Notes)
     }
-    // deleteTask(id: number) {
-    //     let task = this.Notes.find((task) => task.taskId === id)
-    //     for(let i=0; i<this.Notes.length; i++) {
-    //         if(this.Notes[i].taskId === task?.taskId) {
-    //             this.Notes.splice(i, 1)
-    //             this.noteChanged.next(this.Notes.slice())
-    //             break
-    //         }
-    //     }
-    // }
+    deleteNote(id: string) {
+        let note = this.Notes.find((note) => note.notesFireId === id)
+        for(let i=0; i<this.Notes.length; i++) {
+            if(this.Notes[i].notesFireId === note?.notesFireId) {
+                this.Notes.splice(i, 1)
+                this.noteChanged.next(this.Notes.slice())
+                break
+            }
+        }
+    }
     editNote(note: Note) {
         for(let i=0; i<this.Notes.length; i++) {
             if(this.Notes[i].notesFireId === note.notesFireId) {

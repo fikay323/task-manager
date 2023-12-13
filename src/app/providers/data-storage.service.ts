@@ -89,5 +89,8 @@ export class DataStorageService{
         const edittedNote = new Note(note.noteTitle, note.noteDescription)
         return this.http.patch(`${this.link}/${this.userId}/notes/${note.notesFireId}.json`, edittedNote)
     }
-
+    
+    deleteNote(fireId: string){
+        return this.db.database.ref(`${this.userId}/notes/${fireId}`).remove()
+    }
 }

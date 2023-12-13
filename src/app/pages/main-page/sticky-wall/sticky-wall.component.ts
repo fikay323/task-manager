@@ -45,6 +45,12 @@ export class StickyWallComponent {
   closeOverlay() {
     this.showOverlay = false
   }
+
+  deleteNote() {
+    this.notesService.deleteNote(this.previousNote.notesFireId)
+    this.closeOverlay()
+    this.dataStorageService.deleteNote(this.previousNote.notesFireId)
+  }
   
   submitForm(note) {
     if(!this.noteForm.valid) return

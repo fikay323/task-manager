@@ -7,12 +7,14 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
     styleUrls: ['./pages.component.css']
 })
 export class PagesComponent{
-  toggledSidebar = false
+  toggledSidebar = true
   screenWidth: number
   userPresent: boolean
 
   constructor(private route: ActivatedRoute) {}
   ngOnInit() {
+    this.screenWidth = window.innerWidth
+    this.adjustBasedOnWidth()
     this.route.params.subscribe(params => {
       this.userPresent = params['name'] === 'edit' ? true : false
     })
