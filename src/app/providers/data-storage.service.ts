@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
-import { Subscription, map, take, tap } from "rxjs";
+import { Subscription, map, tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { AngularFireDatabase } from "@angular/fire/compat/database";
 
@@ -12,7 +12,6 @@ import { NotesService } from "./notes.service";
 @Injectable({providedIn: 'root'})
 export class DataStorageService{
     userId: string
-    userSubscription: Subscription
     link = 'https://task-manager-c8110-default-rtdb.firebaseio.com'
 
     constructor(private authService: AuthService, private db: AngularFireDatabase, private http: HttpClient, private taskService: TasksService, private notesService: NotesService) {
