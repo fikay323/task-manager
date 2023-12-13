@@ -1,1 +1,19 @@
-<p>sticky-wall-component works!</p>
+<section *ngIf="!showOverlay" class="">
+    @if (notes.length > 0) {
+        @for (note of notes; track $index) {
+            <div class="bg-blue-500 text-white p-2 m-2 rounded-md">
+                <p> {{ note }}</p>
+            </div>
+        }
+        <div class="bg-purple-100 p-2 m-2 rounded-md flex items-center justify-center">
+            <span class="material-icons text-6xl">add</span>
+        </div>
+    }
+</section>
+<div *ngIf="showOverlay" overlay class="fixed bg-gray-500 opacity-70  top-0 left-0 h-screen w-screen flex-col flex items-center justify-center gap-3">
+    <form #noteForm="ngForm" (ngSubmit)="submitForm(noteForm)" class="flex flex-col gap-2">
+        <input class="rounded-md w-[300px] p-2 border border-black focus:border-2" type="text" id="input" name="noteTitle" ngModel placeholder="Title of your note" required>
+        <textarea class="rounded-md w-[300px] p-2 border border-black focus:border-2" name="noteDescription" id="desc" cols="30" rows="10" ngModel placeholder="Your note" required=""></textarea>
+        <button [disabled]="noteForm.invalid" class="bg-blue-500 p-2 text-white rounded-md hover:scale-90 disabled:opacity-70 disabled:cursor-not-allowed font-medium"type="submit">Save</button>
+    </form>
+</div>

@@ -1,0 +1,10 @@
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+div[overlay] {
+    z-index: 9;
+}
+div[overlay] button {
+    z-index: 10000;
+}
