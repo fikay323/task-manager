@@ -57,7 +57,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     DateFilterPipe,
     StringFilterPipe,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule, 
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

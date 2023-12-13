@@ -1,14 +1,14 @@
 <section class="">
     @if (notes.length > 0) {
         @for (note of notes; track $index) {
-            <div class="bg-blue-500 text-white p-2 m-2 rounded-md sm:text-sm">
+            <div class="bg-blue-500 text-white p-2 m-2 rounded-md sm:text-sm cursor-pointer hover:bg-blue-600 hover:scale-95" (click)="openNote(note)">
                 <p class="font-medium">{{ note.noteTitle }}</p>
                 <p>{{ note.noteDescription }}</p>
             </div>
         }
     }
-    <div class="bg-purple-100 p-2 m-2 rounded-md flex items-center justify-center cursor-pointer">
-        <span class="material-icons text-6xl" (click)="addNewTask()">add</span>
+    <div class="bg-blue-100 p-2 m-2 rounded-md flex items-center justify-center cursor-pointer hover:bg-blue-200 hover:scale-y-95">
+        <span class="material-icons text-6xl" (click)="addNewNote()">add</span>
     </div>
 </section>
 <div *ngIf="showOverlay" overlay class="fixed bg-gray-900 opacity-90  top-0 left-0 h-screen w-screen flex-col flex items-center justify-center gap-3">
