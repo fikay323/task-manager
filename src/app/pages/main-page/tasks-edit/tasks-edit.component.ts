@@ -21,6 +21,7 @@ export class TasksEditComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private taskService: TasksService, private location: Location, private dataStorageService: DataStorageService) {}
 
   ngOnInit() {
+    this.taskService.screenWidth.next(window.innerWidth)
     this.route.params.subscribe((params: Params)=> {
       this.id = +params['id']
       this.editMode = params['name'] === 'edit' ? true : false

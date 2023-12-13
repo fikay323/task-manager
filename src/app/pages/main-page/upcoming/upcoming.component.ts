@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 export class UpcomingComponent {
   tasks: Task[] = []
   track: any
-  constructor(private taskService: TasksService, private router: Router) {}
+  constructor(private taskService: TasksService) {}
 
   ngOnInit() {
+    this.taskService.screenWidth.next(window.innerWidth)
     this.tasks = this.taskService.getTasks()
     this.taskService.taskChanged.subscribe(tasks => {
       this.tasks = tasks

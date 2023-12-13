@@ -1,6 +1,6 @@
 <main class="p w-screen h-screen flex">
     <aside class="bg-gray-200 w-[200px] rounded-2xl translate-x-[-200%] p-3 duration-300
-    sm:translate-x-0 overflow-hidden whitespace-nowrap"
+    sm:translate-x-0 overflow-hidden whitespace-nowrap h-screen z-[100000]"
     #sidebar [class.collapse]="toggledSidebar">
         <span *ngIf="!toggledSidebar" [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons h-fit text-3xl cursor-pointer ml-[85%]">close</span>
         <app-sidebar class="flex flex-col h-full"></app-sidebar>
@@ -8,7 +8,7 @@
     
     <section class="grow flex flex-col md:ml-4">
         <span *ngIf="!toggledSidebar" class="pt-4"></span>
-        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons mt-1 ml-2 h-fit text-3xl cursor-pointer">menu</span>
+        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons bg-red-500 mt-1 ml-2 h-fit text-3xl cursor-pointer sticky top-0 left-1">menu</span>
         <app-main-page class="grow"></app-main-page>
     </section>
     <div>

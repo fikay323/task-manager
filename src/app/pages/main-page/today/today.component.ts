@@ -14,6 +14,7 @@ export class TodayComponent {
   constructor(private taskService: TasksService, private router: Router) {}
 
   ngOnInit() {
+    this.taskService.screenWidth.next(window.innerWidth)
     this.tasks = this.taskService.getTasks()
     this.taskService.taskChanged.subscribe(tasks => {
       this.tasks = tasks

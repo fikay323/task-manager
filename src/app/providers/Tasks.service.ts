@@ -6,6 +6,7 @@ import { Task } from "src/app/shared/task.model";
 @Injectable({providedIn: 'root'})
 export class TasksService{
     taskChanged = new Subject<Task[]>()
+    screenWidth = new Subject<number>()
     taskSelected = new Subject<Task| undefined | null>()
 
     constructor(private router: Router) {}
@@ -55,4 +56,5 @@ export class TasksService{
     closeTaskDetails() {
         this.router.navigate(['tasks', { outlets: { taskDetail: null } }]);
     }
+
 }

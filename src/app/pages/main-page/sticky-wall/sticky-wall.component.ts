@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { TasksService } from 'src/app/providers/Tasks.service';
 import { DataStorageService } from 'src/app/providers/data-storage.service';
 import { NotesService } from 'src/app/providers/notes.service';
 import { Note } from 'src/app/shared/note.model';
@@ -16,10 +17,10 @@ export class StickyWallComponent {
   editMode = false
   previousNote: Note
 
-  constructor(private notesService: NotesService, private dataStorageService: DataStorageService) {
-  }
+  constructor(private notesService: NotesService, private dataStorageService: DataStorageService, private taskService: TasksService) {}
   
   ngOnInit() {
+    this.taskService.screenWidth.next(window.innerWidth)
     this.notesService.noteChanged.subscribe(notes => {
       this.notes = notes
     })

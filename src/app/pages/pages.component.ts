@@ -1,5 +1,6 @@
-import { Component, HostListener, Renderer2, ViewChild } from "@angular/core";
-import { ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
+import { Component, HostListener } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { TasksService } from "../providers/Tasks.service";
 
 @Component({
     selector: 'app-pages',
@@ -11,10 +12,13 @@ export class PagesComponent{
   screenWidth: number
   userPresent: boolean
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private taskService: TasksService) {}
   ngOnInit() {
     this.screenWidth = window.innerWidth
     this.adjustBasedOnWidth()
+    this.taskService.screenWidth.subscribe(width => {
+      this.toggledSidebar = width < 501 ? true : false
+    })
     this.route.params.subscribe(params => {
       this.userPresent = params['name'] === 'edit' ? true : false
     })
