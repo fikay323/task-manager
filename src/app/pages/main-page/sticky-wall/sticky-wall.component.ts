@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { TasksService } from 'src/app/providers/Tasks.service';
+import { DataStorageService } from 'src/app/providers/data-storage.service';
 import { NotesService } from 'src/app/providers/notes.service';
 import { Note } from 'src/app/shared/note.model';
-import { Task } from 'src/app/shared/task.model';
 
 @Component({
   selector: 'app-sticky-wall',
@@ -12,23 +11,30 @@ import { Task } from 'src/app/shared/task.model';
 export class StickyWallComponent {
   showOverlay = false
   notes: Note[] = []
-  constructor(private notesService: NotesService, private tasksService: TasksService) {}
-
+  constructor(private notesService: NotesService, private dataStorageService: DataStorageService) {
+  }
+  
   ngOnInit() {
-    this.tasksService.taskChanged.subscribe(tasks => {
-      tasks.forEach(task => {
-        this.notes.push(task.notes)
-      })
+    this.notesService.noteChanged.subscribe(notes => {
+      this.notes = notes
     })
-    this.tasksService.Tasks.forEach(task => {
-      console.log(task.notes)
-      console.log()
-      // this.notes = task.notes
-    })
+    this.notes = this.notesService.Notes
+    this.dataStorageService.fetchNoteFromDatabase().subscribe()
+  }
+
+  addNewTask() {
+    this.showOverlay = true
+  }
+  closeOverlay() {
+    this.showOverlay = false
   }
 
   submitForm(note) {
     this.notesService.addNote(note.value)
+    this.dataStorageService.addNoteToDatabase(note.value).then(response => {
+      console.log(response)
+    })
     console.log(note.value)
+    this.showOverlay = false
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
-import { Subscription, map, tap } from "rxjs";
+import { Subscription, map, take, tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 import { Task } from "../shared/task.model";
@@ -51,7 +51,6 @@ export class DataStorageService{
                         ...response[element],
                         taskDueDate: new Date(response[element].taskDueDate),
                         fireId: element,
-                        notes: this.stickyNotes
                     }
                     taskArray.push(task)
                 }
@@ -70,10 +69,26 @@ export class DataStorageService{
         return this.db.database.ref(`${this.userId}/tasks/${fireId}`).remove()
     }
 
-    addNotes(notes) {
+    addNoteToDatabase(notes) {
         const path = `${this.userId}/notes`
         const dataRef = this.db.list(path)
         return dataRef.push(notes)
+    }
+    fetchNoteFromDatabase() {
+        const path = `${this.userId}/notes`
+        const dataRef = this.db.list(path)
+        return dataRef.valueChanges().pipe(take(1), map((notesArray: Note[]) => {
+            const notes: Note[] = []
+            for(let note in notesArray) {
+                if(notesArray.hasOwnProperty(note)) {
+                    const fetchedNote = new Note(note['noteTitle'], note['noteDescription'], note)
+                    notes.push(fetchedNote)
+                }
+            }
+            return notes
+        }), tap(response => {
+            console.log(response)
+        }))
     }
 
 }

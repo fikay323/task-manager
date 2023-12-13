@@ -9,18 +9,24 @@ export class NotesService{
 
     constructor(private router: Router) {}
 
-    Notes: Note[] = []
+    Notes: Note[] = [
+        new Note('Effortlessly organize your thoughts', 'with our intuitive sticky notes app, allowing you to jot down quick reminders on the go.'),
+        new Note('Stay productive with our user-friendly interface', 'that lets you easily create, edit, and organize your virtual sticky notes for seamless task management.'),
+        { noteTitle: "Customize your digital notes with various colors and styles", noteDescription: "adding a personal touch to your reminders and making them visually distinct." },
+        { noteTitle: "Enjoy the convenience of syncing your sticky notes across devices", noteDescription: "ensuring you have access to your important thoughts whenever and wherever you need them." },
+        { noteTitle: "With our app's responsive design and easy sharing options", noteDescription: "collaboration becomes a breeze, allowing you to effortlessly collaborate and share ideas with colleagues and friends." },
+    ]
     getRandomNumber() {
         const number = Math.floor(Math.random()*10000000)
         return number
     }
-    // setTasks(notes: Note[]) {
-    //     this.Notes = notes
-    //     this.noteChanged.next(this.Notes.slice())
-    // }
-    // getNotes() {
-    //     return this.Notes
-    // }
+    setNotes(notes: Note[]) {
+        this.Notes = notes
+        this.noteChanged.next(this.Notes.slice())
+    }
+    getNotes() {
+        return this.Notes
+    }
     // getTask(id: number): Note | undefined {
     //     let task: Task | undefined
     //     task = this.Notes.find((note) => note.taskId === id)

@@ -5,6 +5,9 @@ section {
 div[overlay] {
     z-index: 9;
 }
-div[overlay] button {
+div[overlay] span, button, input, textarea {
     z-index: 10000;
+}
+div[overlay] .material-icons {
+    color: white !important;
 }
