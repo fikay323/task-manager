@@ -55,15 +55,15 @@ export class NotesService{
     //         }
     //     }
     // }
-    // editTask(task: Note) {
-    //     for(let i=0; i<this.Notes.length; i++) {
-    //         if(this.Notes[i].taskId === task.taskId) {
-    //             this.Notes[i] = task
-    //             this.noteChanged.next(this.Notes.slice())
-    //             break
-    //         }
-    //     }
-    // }
+    editNote(note: Note) {
+        for(let i=0; i<this.Notes.length; i++) {
+            if(this.Notes[i].notesFireId === note.notesFireId) {
+                this.Notes[i] = note
+                this.noteChanged.next(this.Notes.slice())
+                break
+            }
+        }
+    }
 
     // closeTaskDetails() {
     //     this.router.navigate(['tasks', { outlets: { taskDetail: null } }]);

@@ -47,11 +47,14 @@ export class StickyWallComponent {
   }
   
   submitForm(note) {
+    if(!this.noteForm.valid) return
     if(this.editMode){
       if(this.previousNote.noteTitle === note.value.noteTitle && this.previousNote.noteDescription === note.value.noteDescription){
-        console.log('Same Thing')
       } else {
         console.log('wahala e por')
+        const newNote = new Note(note.value.noteTitle, note.value.noteDescription, this.previousNote.notesFireId)
+        this.notesService.editNote(newNote)
+        this.dataStorageService.updateNote(note.value).subscribe()
       }
     } else {
       this.notesService.addNote(note.value)

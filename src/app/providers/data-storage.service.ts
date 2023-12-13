@@ -59,17 +59,17 @@ export class DataStorageService{
         const edittedTask = new Task(task.taskName, task.taskDescription, task.taskList, task.taskDueDate, task.taskId)
         return this.http.put(`${this.link}/${this.userId}/tasks/${task.fireId}.json`, edittedTask)
     }
-
+    
     deleteTask(fireId: string){
         return this.db.database.ref(`${this.userId}/tasks/${fireId}`).remove()
     }
-
+    
     addNoteToDatabase(notes) {
         const path = `${this.userId}/notes`
         const dataRef = this.db.list(path)
         return dataRef.push(notes)
     }
-
+    
     fetchNoteFromDatabase() {
         const path = `${this.link}/${this.userId}/notes.json`
         return this.http.get<Note[]>(path).pipe(map((notesArray: Note[]) => {
@@ -84,6 +84,11 @@ export class DataStorageService{
         }), tap(response => {
             this.notesService.setNotes(response)
         }))
+    }
+
+    updateNote(note: Note){
+        const edittedNote = new Note(note.noteTitle, note.noteDescription)
+        return this.http.patch(`${this.link}/${this.userId}/notes/${note.notesFireId}.json`, edittedNote)
     }
 
 }
