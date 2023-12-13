@@ -5,10 +5,9 @@
         <span *ngIf="!toggledSidebar" [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons h-fit text-3xl cursor-pointer ml-[85%]">close</span>
         <app-sidebar class="flex flex-col h-full"></app-sidebar>
     </aside>
-    
     <section class="grow flex flex-col md:ml-4">
         <span *ngIf="!toggledSidebar" class="pt-4"></span>
-        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons bg-red-500 mt-1 ml-2 h-fit text-3xl cursor-pointer sticky top-0 left-1">menu</span>
+        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons mt-1 ml-2 h-fit text-3xl cursor-pointer sticky top-0 left-1">menu</span>
         <app-main-page class="grow"></app-main-page>
     </section>
     <div>
