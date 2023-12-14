@@ -26,7 +26,6 @@ export class PagesComponent{
 
   toggleSidebar() {
     this.toggledSidebar = !this.toggledSidebar
-    console.log(this.toggledSidebar)
   }
 
   @HostListener('window:resize', ['$event'])

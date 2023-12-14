@@ -54,7 +54,6 @@ export class AuthService {
     let newDate = new Date(currentDate);
     newDate.setDate(currentDate.getDate() + 2)
     const user = new User(userdata.email, userdata.uid, newDate, userdata.refreshToken)
-    console.log(user.id)
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))
     this.router.navigate(['/tasks'])

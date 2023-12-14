@@ -15,4 +15,4 @@
 <div *ngIf="isFetching" class="text-center">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<app-alert></app-alert>
+<app-alert *ngIf="errorMessage" [message]="errorMessage" (close)="closeAlertComponent()"></app-alert>

@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/providers/auth.service';
 })
 export class RegisterComponent {
   isFetching = false
+  errorMessage = null
 
   constructor(private authService: AuthService) {}
 
@@ -24,7 +25,11 @@ export class RegisterComponent {
       this.authService.handleAuthentication(response.user)
     })
     .catch(error => {
-      this.authService.handleError(error)
+      this.isFetching = false
+      this.errorMessage = this.authService.handleError(error)
     })
+  }
+  closeAlertComponent() {
+    this.errorMessage = null
   }
 }

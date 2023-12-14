@@ -9,13 +9,13 @@ import { AuthService } from 'src/app/providers/auth.service';
 })
 export class LoginComponent {
   isFetching = false
-  error
+  errorMessage = null
 
   constructor(private authService: AuthService) {}
 
   login(loginForm: NgForm) {
     if(!loginForm.valid) return
-    // this.isFetching = true
+    this.isFetching = true
     const user = {
       email: loginForm.value.email,
       password: loginForm.value.password
@@ -25,8 +25,13 @@ export class LoginComponent {
       this.isFetching = false
     })
     .catch(error => {
-      this.authService.handleError(error)
+      this.isFetching = false
+      this.errorMessage = this.authService.handleError(error)
     })
+  }
+
+  closeAlertComponent() {
+    this.errorMessage = null
   }
 
 }

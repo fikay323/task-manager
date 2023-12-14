@@ -29,7 +29,6 @@ export class DataStorageService{
     addTaskToDatabase(taskName, description, list, date, randomNumber) {
         const task = new Task(taskName, description, list, date, randomNumber)
         return this.http.post(`${this.link}/${this.userId}/tasks.json`, task).subscribe(resData => {
-            console.log(resData)
             const addedTask = new Task(taskName, description, list, date, randomNumber, resData['name'])
             this.taskService.addTask(addedTask)
         })
@@ -89,7 +88,6 @@ export class DataStorageService{
 
     updateNote(note: Note){
         const edittedNote = new Note(note.noteTitle, note.noteDescription)
-        console.log(note.notesFireId)
         return this.http.patch(`${this.link}/${this.userId}/notes/${note.notesFireId}.json`, edittedNote)
     }
     

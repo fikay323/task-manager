@@ -59,7 +59,6 @@ export class StickyWallComponent {
     if(this.editMode){
       if(this.previousNote.noteTitle === note.value.noteTitle && this.previousNote.noteDescription === note.value.noteDescription){
       } else {
-        console.log('wahala e por')
         const newNote = new Note(note.value.noteTitle, note.value.noteDescription, this.previousNote.notesFireId)
         this.notesService.editNote(newNote)
         this.dataStorageService.updateNote(newNote).subscribe()
