@@ -61,12 +61,11 @@ export class TasksEditComponent implements OnInit {
   closeTask() {
    this.location.back()
   }
-
+  
   deleteTask() {
     if(!this.editMode) return
+    this.location.back()
     this.taskService.deleteTask(this.id)
-    this.dataStorageService.deleteTask(this.fireId).then(() => {
-      this.closeTask()
-    })
+    this.dataStorageService.deleteTask(this.fireId)
   }
 }
