@@ -1,17 +1,22 @@
-<section class="p-4 pt-0">
-    <h1 class="text-4xl font-medium">Personal</h1>
-    <div class="tasks mt-8">
-        <div *ngIf="(tasks | stringFilter: 'personal') as result">
-            @if (result.length > 0) {
-                @for (task of result; track $index) {
-                    <p routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center" (click)="openTask(task.taskId)">
-                        <a class="text-sm font-medium">{{ task.taskName }}</a>
-                        <span class="material-icons ms-auto">chevron_right</span>
-                    </p>
+<section class="flex h-full">
+    <div class="p-4 pt-0 grow">
+        <h1 class="text-3xl font-medium">Personal</h1>
+        <div class="tasks mt-8">
+            <div *ngIf="(tasks | stringFilter: 'personal') as result">
+                @if (result.length > 0) {
+                    @for (task of result; track $index) {
+                        <p routerLinkActive="active" class="w-full border-gray-200 rounded-md border-b p-4 flex items-center cursor-pointer" (click)="openTask(task.taskId)">
+                            <a class="text-sm font-medium">{{ task.taskName }}</a>
+                            <span class="material-icons ms-auto">chevron_right</span>
+                        </p>
+                    }
+                } @else {
+                    <h2>You have no task tagged as Personal</h2>
                 }
-            } @else {
-                <h2>You have no task tagged as Personal</h2>
-            }
+            </div>
         </div>
+    </div>
+    <div>
+        <router-outlet></router-outlet>
     </div>
 </section>

@@ -1,3 +1,13 @@
 <div class="min-w-[66%] grow">
-    <router-outlet></router-outlet>
+    @if (title === 'upcoming') {
+        <app-upcoming></app-upcoming>
+    } @else if (title === 'today') {
+        <app-today></app-today>
+    } @else if (title === 'sticky-wall') {
+        <app-sticky-wall></app-sticky-wall>
+    } @else if (title === 'personal') {
+        <app-personal></app-personal>
+    } @else if (title === 'work') {
+        <app-work-tasks></app-work-tasks>
+    }
 </div>

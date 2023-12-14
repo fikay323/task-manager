@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Task } from 'src/app/shared/task.model';
 import { TasksService } from '../../../providers/Tasks.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-upcoming',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UpcomingComponent {
   tasks: Task[] = []
   track: any
-  constructor(private taskService: TasksService) {}
+  constructor(private taskService: TasksService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.taskService.screenWidth.next(window.innerWidth)
@@ -22,5 +22,6 @@ export class UpcomingComponent {
   }
 
   openTask(id: number) {
+    this.router.navigate([id, 'edit'], {relativeTo: this.route})
   }
 }

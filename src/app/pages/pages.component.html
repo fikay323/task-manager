@@ -8,9 +8,12 @@
     <section class="grow flex flex-col md:ml-4">
         <span *ngIf="!toggledSidebar" class="pt-4"></span>
         <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons mt-1 ml-2 h-fit text-3xl cursor-pointer sticky top-0 left-1">menu</span>
-        <app-main-page class="grow"></app-main-page>
+        <!-- <app-main-page class="grow"></app-main-page> -->
+        <div class="grow">
+            <router-outlet></router-outlet>
+        </div>
     </section>
-    <div>
-        <router-outlet name="taskDetail"></router-outlet>
-    </div>
+    <!-- <div>
+        <app-main-page></app-main-page>
+    </div> -->
 </main>

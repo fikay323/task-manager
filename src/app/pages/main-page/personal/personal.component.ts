@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Task } from 'src/app/shared/task.model';
 import { TasksService } from '../../../providers/Tasks.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PersonalComponent {
   tasks: Task[] = []
-  constructor(private taskService: TasksService, private router: Router) {}
+  constructor(private taskService: TasksService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.taskService.screenWidth.next(window.innerWidth)
@@ -23,6 +23,6 @@ export class PersonalComponent {
   openTask(id: number) {
     const task = this.tasks.find((task) => task.taskId === id)
     this.taskService.taskSelected.next(task)
-    this.router.navigate(['tasks', {outlets: {taskDetail: ['edit', id]}}])
+    this.router.navigate([id, 'edit'], { relativeTo: this.route })
   }
 }
