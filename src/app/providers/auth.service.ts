@@ -42,15 +42,17 @@ export class AuthService {
         _token: string,
       } = JSON.parse(localStorage.getItem('userData'))
       const user = new User(userData.email, userData.id, userData.expiryDate, userData._token)
-      console.log(user)
-      // if(user.token) {
-      //   this.User.next(user)
-      // }
+      if(user.token) {
+          this.User.next(user)
+      }
     }
   }
-  
+    
   handleAuthentication(userdata) {
-    const user = new User(userdata.email, userdata.uid, new Date(new Date().getDate() + 2), userdata.refreshToken)
+    let currentDate = new Date();
+    let newDate = new Date(currentDate);
+    newDate.setDate(currentDate.getDate() + 2)
+    const user = new User(userdata.email, userdata.uid, newDate, userdata.refreshToken)
     console.log(user.id)
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))

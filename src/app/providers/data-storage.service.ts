@@ -20,7 +20,9 @@ export class DataStorageService{
 
     private init() {
         this.authService.User.subscribe(user => {
-            this.userId = user.id
+            if(user){
+                this.userId = user.id
+            }
         })
     }
     
