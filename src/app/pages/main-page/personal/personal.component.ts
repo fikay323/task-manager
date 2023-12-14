@@ -22,7 +22,6 @@ export class PersonalComponent {
 
   openTask(id: number) {
     const task = this.tasks.find((task) => task.taskId === id)
-    this.taskService.taskSelected.next(task)
     this.router.navigate([id, 'edit'], { relativeTo: this.route })
   }
 }

@@ -59,12 +59,7 @@ export class TasksEditComponent implements OnInit {
   }
 
   closeTask() {
-    if(this.editMode){
-      this.taskService.taskSelected.next(null)
-      this.taskService.closeTaskDetails()
-    } else {
-      this.location.back()
-    }
+   this.location.back()
   }
 
   deleteTask() {

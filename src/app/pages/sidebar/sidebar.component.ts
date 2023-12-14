@@ -13,7 +13,6 @@ export class SidebarComponent {
   constructor(private router: Router, private taskService: TasksService, private authService: AuthService) {}
 
   createNewTask() {
-    this.taskService.closeTaskDetails()
     setTimeout(() => {
       this.router.navigate(['tasks', 'new'])
     }, 50);

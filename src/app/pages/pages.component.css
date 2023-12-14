@@ -1,5 +1,6 @@
 aside {
     height: 100%;
+    z-index: 999999999;
     transform: translateX(0%);
 }
 .collapse {
