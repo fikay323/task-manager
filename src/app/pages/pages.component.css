@@ -7,12 +7,23 @@ aside {
     transform: translateX(-100%);
     padding: 0 !important;
 }
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    opacity: 85%;
+    display: none;
+}
 
 @media (max-width: 500px) {
     aside {
-        width: 100% !important;
+        width: 75% !important;
         position: fixed !important;
         top: 0;
         left: 0;
+    }
+    .overlay {
+        display: block;
     }
 }
