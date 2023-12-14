@@ -12,7 +12,7 @@ import { TasksResolverService } from './providers/tasks-resolver.service';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/tasks', pathMatch: 'full'},
+  {path: '', redirectTo: '/tasks/today', pathMatch: 'full'},
   {path: 'tasks', component: PagesComponent, canActivate: [AuthGuard], resolve: [TasksResolverService], children: [
     {path: '', resolve: [TasksResolverService], component: TasksStartComponent},
     {path: 'new', component: TasksEditComponent},
@@ -21,6 +21,7 @@ const routes: Routes = [
     ]}
   ]},
   {path: 'auth', component: AuthComponent, children: [
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
   ]},

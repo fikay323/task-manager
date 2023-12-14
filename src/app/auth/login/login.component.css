@@ -27,5 +27,7 @@ button {
 @media screen and (max-width: 600px) {
     .login-container {
         padding: 10px;
+        width: 85vw;
+        max-width: none;
     }
 }

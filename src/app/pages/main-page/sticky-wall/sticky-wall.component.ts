@@ -45,6 +45,7 @@ export class StickyWallComponent {
   }
   closeOverlay() {
     this.showOverlay = false
+    this.editMode = false
   }
 
   deleteNote() {

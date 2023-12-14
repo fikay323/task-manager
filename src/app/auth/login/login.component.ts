@@ -20,8 +20,8 @@ export class LoginComponent {
       password: loginForm.value.password
     }
     this.authService.login(user).then(response => {
-      this.isFetching = false
       this.authService.handleAuthentication(response.user)
+      this.isFetching = false
     })
     .catch(error => {
       console.log(error)
