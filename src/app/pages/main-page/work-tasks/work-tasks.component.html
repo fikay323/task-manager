@@ -1,6 +1,6 @@
-<section class="flex h-full">
-    <h1 class="text-3xl font-medium grow">Work</h1>
-    <div class="p-4 pt-0">
+<section class="flex h-full flex-col">
+    <div class="p-4 pt-0 grow">
+        <h1 class="text-3xl font-medium">Work</h1>
         <div class="tasks mt-8">
             <div *ngIf="(tasks | stringFilter: 'work') as result">
                 @if (result.length > 0) {
