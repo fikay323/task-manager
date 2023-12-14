@@ -31,22 +31,26 @@ export class AuthService {
     })
   }
 
+  autoLogout() {}
+
   autoLogin() {
     if(localStorage['userData']) {
       const userData: {
         email: string,
         id: string,
+        expiryDate: Date,
         _token: string,
       } = JSON.parse(localStorage.getItem('userData'))
-      const user = new User(userData.email, userData.id, userData._token)
-      if(user.token) {
-        this.User.next(user)
-      }
+      const user = new User(userData.email, userData.id, userData.expiryDate, userData._token)
+      console.log(user)
+      // if(user.token) {
+      //   this.User.next(user)
+      // }
     }
   }
   
   handleAuthentication(userdata) {
-    const user = new User(userdata.email, userdata.uid, userdata.refreshToken)
+    const user = new User(userdata.email, userdata.uid, new Date(new Date().getDate() + 2), userdata.refreshToken)
     console.log(user.id)
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))
