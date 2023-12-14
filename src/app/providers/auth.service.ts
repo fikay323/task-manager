@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../shared/user.model';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AuthService {
   key: string = 'AIzaSyA9SAqzk_9d6uMt364o1HJ3L7rejHsnsVg'
   User = new BehaviorSubject<User>(null)
+  logoutTimer
 
   constructor(private router: Router, private afs: AngularFireAuth) {}
   
@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   logout() {
+    clearTimeout(this.logoutTimer)
     this.afs.signOut().then(() => {  
       this.User.next(null)
       localStorage.removeItem('userData')
@@ -32,7 +33,11 @@ export class AuthService {
     })
   }
 
-  autoLogout() {}
+  autoLogout(time) {
+    this.logoutTimer = setTimeout(() => {
+      this.logout()
+    }, time);
+  }
 
   autoLogin() {
     if(localStorage['userData']) {
@@ -44,7 +49,10 @@ export class AuthService {
       } = JSON.parse(localStorage.getItem('userData'))
       const user = new User(userData.email, userData.id, userData.expiryDate, userData._token)
       if(user.token) {
-          this.User.next(user)
+        const expiresIn = new Date(new Date(userData.expiryDate).getTime() - new Date().getTime())
+        this.User.next(user)
+        this.autoLogout(expiresIn.getTime() * 1000)
+        this.router.navigate(['/tasks/today'])
       }
     }
   }
@@ -56,7 +64,9 @@ export class AuthService {
     const user = new User(userdata.email, userdata.uid, newDate, userdata.refreshToken)
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))
-    this.router.navigate(['/tasks'])
+    const expiresIn = new Date(newDate.getTime() - new Date().getTime())
+    this.autoLogout(expiresIn.getTime() * 1000)
+    this.router.navigate(['/tasks/today'])
   }
 
   handleError(error) {
