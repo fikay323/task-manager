@@ -87,6 +87,7 @@ export class DataStorageService{
 
     updateNote(note: Note){
         const edittedNote = new Note(note.noteTitle, note.noteDescription)
+        console.log(note.notesFireId)
         return this.http.patch(`${this.link}/${this.userId}/notes/${note.notesFireId}.json`, edittedNote)
     }
     

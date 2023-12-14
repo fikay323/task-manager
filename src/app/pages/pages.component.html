@@ -7,7 +7,7 @@
     </aside>
     <section class="grow flex flex-col md:ml-4">
         <span *ngIf="!toggledSidebar" class="pt-4"></span>
-        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class="material-icons mt-1 ml-2 h-fit text-3xl cursor-pointer sticky top-0 left-1">menu</span>
+        <span *ngIf="toggledSidebar" out [class.collapseBtn]="!toggledSidebar" (click)="toggleSidebar()" class=" py-3 z-[99999999] material-icons mt-1 ml-2 h-fit text-3xl cursor-pointer sticky top-0 left-1 bg-white w-full">menu</span>
         <!-- <app-main-page class="grow"></app-main-page> -->
         <div class="grow">
             <router-outlet></router-outlet>

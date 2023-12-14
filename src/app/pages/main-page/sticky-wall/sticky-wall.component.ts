@@ -61,7 +61,7 @@ export class StickyWallComponent {
         console.log('wahala e por')
         const newNote = new Note(note.value.noteTitle, note.value.noteDescription, this.previousNote.notesFireId)
         this.notesService.editNote(newNote)
-        this.dataStorageService.updateNote(note.value).subscribe()
+        this.dataStorageService.updateNote(newNote).subscribe()
       }
     } else {
       this.notesService.addNote(note.value)
@@ -69,7 +69,7 @@ export class StickyWallComponent {
         this.notesService.setNoteId(response.ref.key)
       })
     }
-    this.showOverlay = false
-    this.editMode = false
+    // this.showOverlay = false
+    // this.editMode = false
   }
 }
