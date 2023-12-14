@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../shared/user.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,21 @@ export class AuthService {
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))
     this.router.navigate(['/tasks'])
+  }
+
+  handleError(error) {
+    let errorMesssage = 'An unknown error occurred'
+    switch(error.code){
+      case ('auth/invalid-credential'): 
+       errorMesssage = 'Username or password incorrect'
+      break;
+      case ('auth/too-many-requests'): 
+       errorMesssage = 'To many requests, try again later'
+      break;
+      case ('auth/email-already-in-use'): 
+       errorMesssage = 'An account has registered with this email address, try signing in'
+      break;
+    }
+    return errorMesssage
   }
 }

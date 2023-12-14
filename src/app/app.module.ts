@@ -27,6 +27,7 @@ import { StringFilterPipe } from './providers/string-filter.pipe';
 import { AuthComponent } from './auth/auth.component';
 import { environment } from 'src/environments/environment';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     TasksEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

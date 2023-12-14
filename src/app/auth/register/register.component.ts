@@ -23,5 +23,8 @@ export class RegisterComponent {
       this.isFetching = false
       this.authService.handleAuthentication(response.user)
     })
+    .catch(error => {
+      this.authService.handleError(error)
+    })
   }
 }

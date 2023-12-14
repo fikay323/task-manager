@@ -2,9 +2,11 @@
     <form (ngSubmit)="register(registerForm)" #registerForm="ngForm">
         <label for="username">Email</label>
         <input type="text" class="rounded-md bg-blue-100 border border-blue-400 focus:border-2" id="username" name="email" email ngModel required>
-        
+        <small *ngIf="registerForm.controls['email']?.invalid && registerForm.controls['email'].touched">Input a valid email</small>
+
         <label for="password">Password</label>
         <input type="password" class="rounded-md bg-blue-100 border border-blue-400 focus:border-2" id="password" name="password" ngModel required minlength="6">
+        <small *ngIf="registerForm.controls['password']?.invalid && registerForm.controls['password'].touched">Input a valid email</small>
         
         <button [disabled]="!registerForm.valid" class="rounded-md disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Register</button>
         <p class="text-zinc-600 text-sm font-medium mt-3 text-center">Already have an account? <a routerLink="/auth/login" class="hover:underline hover:font-semibold cursor-pointer">Sign In</a></p>
