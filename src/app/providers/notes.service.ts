@@ -28,11 +28,6 @@ export class NotesService{
     getNotes() {
         return this.Notes
     }
-    // getTask(id: number): Note | undefined {
-    //     let task: Task | undefined
-    //     task = this.Notes.find((note) => note.taskId === id)
-    //     return task
-    // }
     setNoteId(id: string) {
         const lastNote= this.Notes.at(-1)
         const note = {...lastNote, notesFireId: id}
@@ -64,8 +59,4 @@ export class NotesService{
             }
         }
     }
-
-    // closeTaskDetails() {
-    //     this.router.navigate(['tasks', { outlets: { taskDetail: null } }]);
-    // }
 }

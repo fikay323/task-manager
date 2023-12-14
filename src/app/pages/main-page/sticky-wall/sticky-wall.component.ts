@@ -69,7 +69,5 @@ export class StickyWallComponent {
         this.notesService.setNoteId(response.ref.key)
       })
     }
-    // this.showOverlay = false
-    // this.editMode = false
   }
 }
