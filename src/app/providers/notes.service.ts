@@ -23,7 +23,6 @@ export class NotesService{
     setNotes(notes: Note[]) {
         this.Notes = notes
         this.noteChanged.next(this.Notes.slice())
-        console.log(this.Notes)
     }
     getNotes() {
         return this.Notes
@@ -32,13 +31,11 @@ export class NotesService{
         const lastNote= this.Notes.at(-1)
         const note = {...lastNote, notesFireId: id}
         this.Notes[this.Notes.length-1] = note
-        console.log(this.Notes)
         this.noteChanged.next(this.Notes)
     }
     addNote(note: Note) {
         this.Notes.push(note)
         this.noteChanged.next(this.Notes.slice())
-        console.log(this.Notes)
     }
     deleteNote(id: string) {
         let note = this.Notes.find((note) => note.notesFireId === id)

@@ -31,7 +31,6 @@ export class TasksService{
     addTask(task: Task) {
         this.Tasks.push(task)
         this.taskChanged.next(this.Tasks.slice())
-        console.log(this.Tasks)
     }
     deleteTask(id: number) {
         let task = this.Tasks.find((task) => task.taskId === id)
