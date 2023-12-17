@@ -11,6 +11,7 @@ export class PagesComponent{
   toggledSidebar = true
   screenWidth: number
   userPresent: boolean
+  removeNav: boolean = false
 
   constructor(private route: ActivatedRoute, private taskService: TasksService) {}
   ngOnInit() {
@@ -21,6 +22,9 @@ export class PagesComponent{
     })
     this.route.params.subscribe(params => {
       this.userPresent = params['name'] === 'edit' ? true : false
+    })
+    this.taskService.removeNavbar.subscribe(bool => {
+      this.removeNav = bool
     })
   }
 

@@ -7,6 +7,7 @@ import { Task } from "src/app/shared/task.model";
 export class TasksService{
     taskChanged = new Subject<Task[]>()
     screenWidth = new Subject<number>()
+    removeNavbar = new Subject<boolean>()
     // taskSelected = new Subject<Task| undefined | null>()
 
     constructor(private router: Router) {}

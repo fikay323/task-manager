@@ -4,15 +4,16 @@ import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../shared/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  key: string = 'AIzaSyA9SAqzk_9d6uMt364o1HJ3L7rejHsnsVg'
+  key: string = environment.firebase.apiKey
   User = new BehaviorSubject<User>(null)
-  logoutTimer
+  logoutTimer: any
 
   constructor(private router: Router, private afs: AngularFireAuth) {}
   
@@ -52,7 +53,6 @@ export class AuthService {
         const expiresIn = new Date(new Date(userData.expiryDate).getTime() - new Date().getTime())
         this.User.next(user)
         this.autoLogout(expiresIn.getTime() * 1000)
-        this.router.navigate(['/tasks/today'])
       }
     }
   }

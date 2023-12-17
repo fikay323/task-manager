@@ -28,6 +28,7 @@ export class StickyWallComponent {
     this.dataStorageService.fetchNoteFromDatabase()
   }
   openNote(note: Note) {
+    this.taskService.removeNavbar.next(true)
     this.showOverlay = true
     this.editMode = true
     this.previousNote = note
@@ -40,12 +41,14 @@ export class StickyWallComponent {
   }
       
   addNewNote() {
+    this.taskService.removeNavbar.next(true)
     this.editMode = false
     this.showOverlay = true
   }
   closeOverlay() {
     this.showOverlay = false
     this.editMode = false
+    this.taskService.removeNavbar.next(false)
   }
 
   deleteNote() {
@@ -69,7 +72,6 @@ export class StickyWallComponent {
         this.notesService.setNoteId(response.ref.key)
       })
     }
-    this.showOverlay = false
-    this.editMode = false
+    this.closeOverlay()
   }
 }
