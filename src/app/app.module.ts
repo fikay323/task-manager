@@ -28,6 +28,7 @@ import { AuthComponent } from './auth/auth.component';
 import { environment } from 'src/environments/environment';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { PreviousComponent } from './pages/main-page/previous/previous.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AlertComponent } from './shared/alert/alert.component';
     LoginComponent,
     RegisterComponent,
     TasksEditComponent,
+    PreviousComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent,

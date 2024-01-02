@@ -11,7 +11,7 @@
         <span class="material-icons text-6xl" (click)="addNewNote()">add</span>
     </div>
 </section>
-<div *ngIf="showOverlay" (click)="closeOverlay()" overlay class="fixed bg-gray-900 opacity-100 top-0 left-0 h-screen w-screen flex-col flex items-center justify-center gap-3 z-[999999990000000]">
+<div *ngIf="showOverlay" (click)="closeOverlay()" overlay class="fixed bg-gray-900 opacity-100 top-0 left-0 h-screen w-screen flex-col flex items-center justify-center gap-3 z-[999999990000099999999999999999900]">
     <div (click)="closeOverlay()" overlay class="fixed bg-gray-900 opacity-90  top-0 left-0 h-screen w-screen flex-col flex items-center justify-center gap-3 z-[99999999]">></div>
     <span class="material-icons text-6xl fixed top-3 right-8 text-white font-bold cursor-pointer z-[99999999]" (click)="closeOverlay()">close</span>
     <form #noteForm="ngForm" (ngSubmit)="submitForm(noteForm)" class="flex flex-col gap-2 opacity-100">

@@ -7,3 +7,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * {
     -webkit-tap-highlight-color: transparent !important;
 }
+div p.active {
+    background-color: red !important;
+}

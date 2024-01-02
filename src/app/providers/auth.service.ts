@@ -52,7 +52,7 @@ export class AuthService {
       if(user.token) {
         const expiresIn = new Date(new Date(userData.expiryDate).getTime() - new Date().getTime())
         this.User.next(user)
-        this.autoLogout(expiresIn.getTime() * 1000)
+        this.autoLogout(expiresIn.getTime())
       }
     }
   }
@@ -65,7 +65,7 @@ export class AuthService {
     this.User.next(user)
     localStorage.setItem('userData', JSON.stringify(user))
     const expiresIn = new Date(newDate.getTime() - new Date().getTime())
-    this.autoLogout(expiresIn.getTime() * 1000)
+    this.autoLogout(expiresIn.getTime())
     this.router.navigate(['/tasks/today'])
   }
 

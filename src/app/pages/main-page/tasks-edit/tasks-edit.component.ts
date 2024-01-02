@@ -29,7 +29,7 @@ export class TasksEditComponent implements OnInit {
         const task = this.taskService.getTask(this.id)
         const date = new Date(task?.taskDueDate)
         this.fireId = task.fireId
-        const formattedDate = `${date?.getFullYear()}-${(date?.getMonth() ?? 0) + 1}-${this.padTo2Digits(date?.getDate())}`;
+        const formattedDate = `${date?.getFullYear()}-${(this.padTo2Digits(date?.getMonth() + 1))}-${this.padTo2Digits(date?.getDate())}`;
         setTimeout(() => {
           this.taskForm.setValue({
             taskName: task?.taskName,
@@ -42,8 +42,8 @@ export class TasksEditComponent implements OnInit {
     })
   }
 
-  padTo2Digits(num: any) {
-    return num?.toString().padStart(2, '0');
+  padTo2Digits(num: number) {
+    return num?.toString().padStart(2, '0')
   }
 
   submitForm() {

@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { TasksService } from 'src/app/providers/Tasks.service';
 import { DataStorageService } from 'src/app/providers/data-storage.service';
 import { NotesService } from 'src/app/providers/notes.service';
