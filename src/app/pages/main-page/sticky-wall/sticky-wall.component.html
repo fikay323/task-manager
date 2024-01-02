@@ -7,8 +7,8 @@
             </div>
         }
     }
-    <div class="bg-blue-100 p-2 m-2 rounded-md flex items-center justify-center cursor-pointer hover:bg-blue-200 hover:scale-y-95">
-        <span class="material-icons text-6xl" (click)="addNewNote()">add</span>
+    <div class="bg-blue-100 p-2 m-2 rounded-md flex items-center justify-center cursor-pointer hover:bg-blue-200 hover:scale-y-95"  (click)="addNewNote()">
+        <span class="material-icons text-6xl">add</span>
     </div>
 </section>
 <div *ngIf="showOverlay" overlay class="fixed bg-gray-900 opacity-100 top-0 left-0 h-screen w-screen flex-col flex items-center justify-center gap-3 z-[999999990000099999999999999999900]">
