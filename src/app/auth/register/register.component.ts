@@ -21,8 +21,7 @@ export class RegisterComponent {
       password: registerForm.value.password
     }
     this.authService.signUp(user).then(response => {
-      this.isFetching = false
-      this.authService.handleAuthentication(response.user)
+      this.authService.handleAuthentication(response.user, this.isFetching)
     })
     .catch(error => {
       this.isFetching = false

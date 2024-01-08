@@ -57,7 +57,7 @@ export class AuthService {
     }
   }
     
-  handleAuthentication(userdata) {
+  handleAuthentication(userdata, isFetching) {
     let currentDate = new Date();
     let newDate = new Date(currentDate);
     newDate.setDate(currentDate.getDate() + 2)
@@ -66,6 +66,7 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(user))
     const expiresIn = new Date(newDate.getTime() - new Date().getTime())
     this.autoLogout(expiresIn.getTime())
+    isFetching = false
     this.router.navigate(['/tasks/today'])
   }
 

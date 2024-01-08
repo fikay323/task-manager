@@ -21,8 +21,7 @@ export class LoginComponent {
       password: loginForm.value.password
     }
     this.authService.login(user).then(response => {
-      this.authService.handleAuthentication(response.user)
-      this.isFetching = false
+      this.authService.handleAuthentication(response.user, this.isFetching)
     })
     .catch(error => {
       this.isFetching = false
