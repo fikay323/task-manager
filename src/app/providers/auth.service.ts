@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   handleError(error) {
-    let errorMesssage = 'An unknown error occurred'
+    let errorMesssage = 'An unknown error occurred. Pls check your network connection and try again'
     switch(error.code){
       case ('auth/invalid-credential'): 
        errorMesssage = 'Username or password incorrect'

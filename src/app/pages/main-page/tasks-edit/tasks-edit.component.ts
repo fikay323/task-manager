@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { TasksService } from '../../../providers/Tasks.service';
@@ -22,6 +22,7 @@ export class TasksEditComponent implements OnInit {
 
   ngOnInit() {
     this.taskService.screenWidth.next(window.innerWidth)
+    console.log()
     this.route.params.subscribe((params: Params)=> {
       this.id = +params['id']
       this.editMode = params['name'] === 'edit' ? true : false
@@ -59,12 +60,13 @@ export class TasksEditComponent implements OnInit {
   }
 
   closeTask() {
-   this.location.back()
+   if(this.editMode) this.router.navigate(['../../'], {relativeTo: this.route})
+   else this.location.back()
   }
   
   deleteTask() {
     if(!this.editMode) return
-    this.location.back()
+    this.closeTask()
     this.taskService.deleteTask(this.id)
     this.dataStorageService.deleteTask(this.fireId)
   }
